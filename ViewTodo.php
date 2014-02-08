@@ -10,7 +10,12 @@
 		<br/>
 		<br/>
 		<h2> 
-			Added Todo : <?php echo ($todo) ?>
+			<?php 
+				if ($todo !=""){
+					?>
+					Added Todo : 
+					<?php echo ($todo) 
+				}?>
 		</h2>
 	</body>
 </html>
