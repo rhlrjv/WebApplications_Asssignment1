@@ -2,7 +2,7 @@
 <html>
 	<body>
 		<h1>TODO Manager</h1>
-		<b/>
+		<br/>
 		<form method="post">
 			<label>Add ToDo: <input name="addTodo" type="text"/></label>
 			<input type="submit" name="submitToDo" value="Add To Do">
