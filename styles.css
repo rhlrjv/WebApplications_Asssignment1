@@ -29,6 +29,8 @@ header .title{
 	font-family:"Lobster", cursive;
 	font-size:45px;
 	padding : 20px 0 10px 0;
+	width: 300px;
+	margin:0px;
 }
 
 footer{
@@ -153,4 +155,25 @@ h1 {
   font-style: normal;
   font-weight: 400;
   src: local('Roboto Regular'), local('Roboto-Regular'), url(fonts/Roboto.woff) format('woff');
+}
+
+nav {
+	position:relative;
+	float:right;
+	top:-40px;
+	right:0px;
+}
+
+nav a{
+	width: 100px;
+	color: #48b0e7;
+	margin : 5px 5px;
+	padding: 5px 10px;
+	font-size: 18px;
+	border : 1px solid #fff;
+	width: 100px;
+}
+
+.selected{
+	border-bottom: 2px solid #dd4b3b;
 }
