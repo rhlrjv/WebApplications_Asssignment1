@@ -3,9 +3,6 @@
 	require 'config.inc';
 	require 'Model.php';
 	
-	session_save_path("$session_save_path");
-	session_start(); // must be first thing in the php file
-	
 	//if(isset($_REQUEST['restart']))
 	//	session_unset();
 	
@@ -14,5 +11,5 @@
 	else
 		$todo = "";
 		
-	require 'ViewToDo.php';
+	require 'ViewToDo.php'; //add this into a switch case statement to access different files
 ?> 
