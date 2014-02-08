@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html>
+	<?php require 'ViewHead.php'; ?>
+
 	<body>
-		<h1>Welcome to TODO Manager</h1>
-		<br/>
-		<form method="post">
-			<label>Add ToDo: <input name="addTodo" type="text"/></label>
-			<input type="submit" name="submitToDo" value="Add To Do">
-		</form>
-		<br/>
-		<br/>
-		<h2> 
-			<?php 
-				if ($todo !=""){
-					?>
-					Todo : 
-					<?php echo ($todo) 
-				}?>
-		</h2>
+	
+		<?php require 'ViewHeader.php'; ?>
+		
+		<div class = "wrap">
+			<form method="post">
+				<label><input class="text-entry"  placeholder="Enter ToDo" name="addTodo" type="text"/></label>
+				<input class = "btn" type="submit" name="submitToDo" value="Add ToDo">
+			</form>
+			<br/>
+			<br/>
+			<p> 
+				<?php 
+					if ($todo !=""){
+						?>
+						Todo : 
+						<?php echo ($todo) ;
+					}?>
+			</p>
+		</div>
+		<?php require 'ViewFooter.php'; ?>
 	</body>
 </html>

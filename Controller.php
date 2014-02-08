@@ -7,9 +7,13 @@
 	//	session_unset();
 	
 	if(isset($_REQUEST['submitToDo']))
-		$todo = $_REQUEST['addTodo'];
+	{
+		$NewTodoName = $_REQUEST['TodoName'];
+		$NewTodoHours = $_REQUEST['TodoHours'];
+		$NewTodoHoursCompleted = $_REQUEST['TodoHoursCompleted'];
+	}
 	else
-		$todo = "";
+		$NewTodoName = "";
 		
-	require 'ViewToDo.php'; //add this into a switch case statement to access different files
+	require 'ViewSignup.php'; //add this into a switch case statement to access different files
 ?> 
