@@ -13,7 +13,7 @@
 			<?php 
 				if ($todo !=""){
 					?>
-					Added Todo : 
+					Todo : 
 					<?php echo ($todo) 
 				}?>
 		</h2>
