@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<body>
-		<h1>CP3101B TODO Manager</h1>
+		<h1>Welcome to TODO Manager</h1>
 		<br/>
 		<form method="post">
 			<label>Add ToDo: <input name="addTodo" type="text"/></label>
