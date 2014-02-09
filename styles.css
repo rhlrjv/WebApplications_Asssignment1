@@ -117,6 +117,73 @@ footer{
 	background-color : #f6f6f6;
 }
 
+.todo-entry{
+	/*position: relative;*/
+	display: block;
+	padding: 7px 10px;
+	margin: 0px;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 24px;
+	text-align: left;
+	vertical-align: middle;
+	cursor: pointer;
+	color: #777;
+	border-left: 5px solid #eee;
+	border-radius: 3px;
+}
+
+.todo-entry:hover{
+	border-left: 5px solid #777;
+}
+
+.important{
+	border-left: 5px solid #dd4b3b;
+}
+
+.important:hover{
+	border-left: 5px solid #c04133;
+}
+
+.todo-name{
+	width:500px;
+	float:left;
+}
+
+.completion{
+	width: 120px;
+	float:left;
+	font-size: 15px;
+	font-weight: 400;
+	text-align: right;
+}
+
+.progressbar {
+  background-color: #f6f6f6;
+  border-radius: 5px;
+  border: 1px solid #bbbbbb;
+  padding: 2px;
+  float: left;
+  width : 250px;
+  margin: 0 10px;
+}
+
+.progressbar > div {
+   background-color: #48b0e7;
+   width: 40%; 
+   height: 18px;
+   border-radius: 3px;
+}
+
+.chkbox{
+	display: inline-block;
+	cursor: pointer;
+	margin: 10px 5px 10px 0;
+	border: 1px solid #bbbbbb;
+	border-radius: 3px;
+	background-color : #f6f6f6;
+}
+
 .full-width{
 	width:100%;
 }
@@ -249,3 +316,21 @@ nav a{
 	line-height: 38px;
 	font-family: "roboto light"
 }
+
+.settings{
+	margin: 0 5px 20px;
+}
+
+.clear{
+	clear:both;
+}
+
+hr{
+	margin:0px 5px;
+	height: 1px;
+    color: #ccc;
+    background: #ddd;
+    font-size: 0;
+    border: 0;
+}
+

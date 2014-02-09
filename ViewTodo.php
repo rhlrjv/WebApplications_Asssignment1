@@ -7,14 +7,32 @@
 		<?php require 'ViewHeader.php'; ?>
 		
 		<div class = "wrap">
-			<div class = "form">
-				<h1> Add a new To-Do </h1>
-				<form method="post">
-					<input class="text-entry ninety-width"  placeholder="Todo name" name="TodoName" type="text"/>
-					<input class="text-entry half-width"  placeholder="Total number of hours " name="TodoHours" type="number"/><br/>
-					<input class="text-entry half-width"  placeholder="Hours Completed " name="TodoHoursCompleted" type="number"/><br/>
-					<input class = "btn full-width" type="submit" name="submitToDo" value="Add ToDo"/>
-				</form>
+			<div class = "container-box">
+				<a class="right settings" href = "?page=settings">Settings</a>
+				<div class="clear"></div>
+				<hr/>
+				<div class="todo-entry">
+					<div class="todo-name">
+						<?php echo("Name of the Todo");?>
+					</div>
+					<div class = "completion">
+						<?php echo("2"."/"."6")?> completed
+					</div>
+					<div class="progressbar">
+					  <div></div>
+					</div>
+					
+					<div class="clear"></div>
+				</div>
+				<hr/>
+				<div class="todo-entry important">
+					hello world
+				</div>
+				<hr/>
+				<div class="todo-entry">
+					hello world
+				</div>
+				<hr/>
 			</div>
 			<br/>
 			<br/>
