@@ -19,7 +19,7 @@ a:hover{
 
 header{
 	background-color:#fff;
-	margin : 0 0 20px 0;
+	margin : 0 0 0px 0;
 	box-shadow: 0 2px 2px rgba(0,0,0,.2);
 }
 
@@ -39,6 +39,7 @@ footer{
 	position : fixed;
 	bottom :0px;
 	width : 100%;
+	background-color: #f6f6f6;
 }
 
 .inner_text_shadow
@@ -54,6 +55,10 @@ footer{
 .center-button{
 	margin: 0 auto; 
 	width  : 300px
+}
+
+.center{
+	text-align: center;
 }
 
 .justify { 
@@ -84,6 +89,7 @@ footer{
 
 .btn:hover{
 	background-color: #409bcc;
+	color: #fff;
 }
 
 .red-btn {
@@ -129,11 +135,35 @@ footer{
 
 .form {
 	width : 800px;
-	margin : 30px auto;
+	margin : 40px auto;
 	background-color : #fff;
 	border : 1px solid #bbbbbb;
 	border-radius: 10px;
 	padding : 30px 20px;
+}
+
+.container-box{
+	margin: 30px 0;
+	background-color : #fff;
+	border : 1px solid #bbbbbb;
+	border-radius: 5px;
+	padding : 30px 20px;
+}
+
+.third{
+	width:295px;
+	float :left;
+	margin : 30px 10px;
+}
+
+.left{
+	margin-left:0px;
+	float:left;
+}
+
+.right{
+	margin-right:0px;
+	float:right;
 }
 
 h1 {
@@ -169,11 +199,53 @@ nav a{
 	color: #48b0e7;
 	margin : 5px 5px;
 	padding: 5px 10px;
-	font-size: 18px;
+	font-size: 13px;
 	border : 1px solid #fff;
-	width: 100px;
+	/*width: 100px;*/
+	text-transform: uppercase;
+	/*text-shadow: 0 1px 2px rgba(0,0,0,.4);*/
+	line-height: 24px;
+	letter-spacing: .15em;
+	text-align: center;
+	font-family: "roboto", sans-serif;
 }
 
 .selected{
 	border-bottom: 2px solid #dd4b3b;
+}
+
+.banner{
+	padding: 60px;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: 18px;
+	font-weight: 200;
+	line-height: 36px;
+	color: #fff;
+	background-color: #1a1a1a;
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+	min-width: 1060px;
+	height: 400px;
+}
+
+.home-banner{
+	background-image: url('images/home-banner.jpg');
+	height: 400px;
+}
+
+.banner-text h2{
+	font-weight: 500;
+	font-size: 52px;
+	line-height: 1em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.5);
+	text-transform: uppercase;
+	margin: 30px 0 0px 0;
+}
+
+.banner-text p{
+	font-size: 30px;
+	line-height: 38px;
+	font-family: "roboto light"
 }

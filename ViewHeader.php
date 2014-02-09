@@ -1,6 +1,6 @@
 <header>
 	<div class = "wrap">
-		<div class = "title">Todo Manager</div>
+		<a href = "?page=home"><div class = "title">Todo Manager</div></a>
 		<nav>
 			<a <?php if($view == "viewLogin.php") echo("class = \"selected\""); ?> href = "?page=login">Log in</a>
 			<a <?php if($view == "viewSignup.php") echo("class = \"selected\""); ?> href = "?page=signup">Sign up</a>

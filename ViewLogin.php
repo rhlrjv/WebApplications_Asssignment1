@@ -12,9 +12,10 @@
 				<form method="post">
 					<input class="text-entry ninety-width"  placeholder="User Name" name="UserName" type="text"/>
 					<input class="text-entry ninety-width"  placeholder="Password" name="Password" type="password"/><br/>
-					<input class = "btn half-width" type="submit" name="submitlogin" value="Login"/>
-					<input class = "btn red-btn half-width" type="submit" name="signup" value="New User"/>
+					<input class = "btn half-width left" type="submit" name="submitlogin" value="Login"/>
+					<input class = "btn red-btn half-width right" type="submit" name="signup" value="New User"/>
 				</form>
+				<div style="clear:both"></div>
 			</div>
 		</div>
 		<?php require 'ViewFooter.php'; ?>
