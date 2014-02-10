@@ -11,28 +11,58 @@
 				<a class="right settings" href = "?page=settings">Settings</a>
 				<div class="clear"></div>
 				<hr/>
-				<div class="todo-entry">
-					<div class="todo-name">
-						<?php echo("Name of the Todo");?>
+				
+				<?php
+				$no=10;
+				for($i=0;$i<20;$i++)
+				{
+					$completedHours = rand(0,5);
+					$totalHours= rand(0,5) + $completedHours;
+					$important = rand(-1	,1);
+					if ( $totalHours== $completedHours)
+						$completed =1;
+					else
+						$completed = 0;
+				?>
+					<div class="todo-entry <?php if($important>0) echo("important");?> <?php if($completed!=0) echo("completed");?>">
+						<div class="todo-name">
+							<a href="?page=editTodo&index=<?php echo($i)?>">
+								<?php echo("Name of the Todo #" . ($i+1));?>
+							</a>
+						</div>
+						<div class = "completion">
+							<?php echo($completedHours."/".$totalHours)?> completed
+						</div>
+						<div class="progressbar">
+						  <div style=" width : <?php echo($completedHours*100/$totalHours); ?>%"></div>
+						</div>
+						<?php 
+						if($completed==0)
+						{ ?>
+							<div>
+								<form method="post">
+									<input type="hidden" value="<?php echo($i);?>" name="todoIncrement"/>
+									<input class = "todo-button" type="submit" value="Increment" name="todoIncrement"/>
+								</form>
+							</div>
+						<?php 
+						}
+						else{
+						?>
+							<div>
+								<form method="post">
+									<input type="hidden" value="<?php echo($i);?>" name="todoDelete"/>
+									<input class = "todo-button delete-btn" type="submit" value="Delete" name="todoDelete"/>
+								</form>
+							</div>
+						<?php 
+						}
+						?>
+						<div class="clear"></div>
 					</div>
-					<div class = "completion">
-						<?php echo("2"."/"."6")?> completed
-					</div>
-					<div class="progressbar">
-					  <div></div>
-					</div>
-					
-					<div class="clear"></div>
-				</div>
 				<hr/>
-				<div class="todo-entry important">
-					hello world
-				</div>
-				<hr/>
-				<div class="todo-entry">
-					hello world
-				</div>
-				<hr/>
+				<?php } ?>
+
 			</div>
 			<br/>
 			<br/>

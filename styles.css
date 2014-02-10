@@ -31,6 +31,11 @@ header .title{
 	padding : 20px 0 10px 0;
 	width: 300px;
 	margin:0px;
+	float: left;
+}
+
+header .title:hover{
+	color: #c04133;
 }
 
 footer{
@@ -127,14 +132,13 @@ footer{
 	line-height: 24px;
 	text-align: left;
 	vertical-align: middle;
-	cursor: pointer;
 	color: #777;
-	border-left: 5px solid #eee;
+	border-left: 5px solid #48b0e7;
 	border-radius: 3px;
 }
 
 .todo-entry:hover{
-	border-left: 5px solid #777;
+	border-left: 5px solid #409bcc;;
 }
 
 .important{
@@ -145,9 +149,33 @@ footer{
 	border-left: 5px solid #c04133;
 }
 
+.completed{
+	border-left: 5px solid #eee;
+	color: #ccc;
+}
+
+.completed>.todo-name>a{
+	color: #ccc;
+}
+
+.completed:hover{
+	border-left: 5px solid #ccc;
+}
+
+.completed>.progressbar > div {
+	background-color: #ccc; 
+	height: 18px;
+	border-radius: 3px;
+}
+
 .todo-name{
-	width:500px;
+	width:520px;
 	float:left;
+	cursor: pointer;
+}
+
+.todo-name>a{
+	color: #777;
 }
 
 .completion{
@@ -159,20 +187,45 @@ footer{
 }
 
 .progressbar {
-  background-color: #f6f6f6;
-  border-radius: 5px;
-  border: 1px solid #bbbbbb;
-  padding: 2px;
-  float: left;
-  width : 250px;
-  margin: 0 10px;
+	background-color: #f6f6f6;
+	border-radius: 5px;
+	border: 1px solid #bbbbbb;
+	padding: 2px;
+	float: left;
+	width : 250px;
+	margin: 0 10px;
 }
 
 .progressbar > div {
-   background-color: #48b0e7;
-   width: 40%; 
-   height: 18px;
-   border-radius: 3px;
+	background-color: #48b0e7; 
+	height: 18px;
+	border-radius: 3px;
+}
+
+.todo-button{
+	background-color: #f6f6f6;
+	border-radius: 5px;
+	border: 1px solid #bbbbbb;
+	float: right;
+	margin: 0 0 0 5px;
+	height: 22px;
+	cursor: pointer;
+	width : 72px;
+	text-align:center;
+}
+
+.todo-button:hover{
+	background-color: #ccc;
+}
+
+.delete-btn{
+	background-color: #dd4b3b;
+	border: 1px solid #dd4b3b;
+	color: #fff;
+}
+
+.delete-btn:hover{
+	background-color: #c04133;
 }
 
 .chkbox{
@@ -257,7 +310,7 @@ h1 {
 nav {
 	position:relative;
 	float:right;
-	top:-40px;
+	top:50px;
 	right:0px;
 }
 
@@ -267,7 +320,7 @@ nav a{
 	margin : 5px 5px;
 	padding: 5px 10px;
 	font-size: 13px;
-	border : 1px solid #fff;
+	border-bottom: 2px solid #fff;
 	/*width: 100px;*/
 	text-transform: uppercase;
 	/*text-shadow: 0 1px 2px rgba(0,0,0,.4);*/
@@ -277,6 +330,10 @@ nav a{
 	font-family: "roboto", sans-serif;
 }
 
+nav a:hover{
+	color: #409bcc;
+	background-color:#eee;
+}
 .selected{
 	border-bottom: 2px solid #dd4b3b;
 }

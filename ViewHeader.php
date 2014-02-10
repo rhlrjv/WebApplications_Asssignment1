@@ -7,5 +7,6 @@
 			<a <?php if($view == "viewTodo.php") echo("class = \"selected\""); ?> href = "?page=todo">Todo</a>
 			<a <?php if($view == "viewAddTodo.php") echo("class = \"selected\""); ?> href = "?page=addtodo">Add Todo</a>
 		</nav>
+		<div class="clear"></div>
 	</div>
 </header>

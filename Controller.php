@@ -25,6 +25,9 @@
 			case "addtodo":
 				$view = "viewAddTodo.php";
 				break;
+			case "editTodo":
+				$view = "viewEditTodo.php";
+				break;
 		}
 	}
 	if(isset($_REQUEST['submitToDo']))
