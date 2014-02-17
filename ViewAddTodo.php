@@ -22,7 +22,7 @@
 			<p> 
 				<?php 
 					if ($NewTodoName !=""){
-						echo ("Todo Name = " . $NewTodoName. "<br/>Todo hours = ". $NewTodoHours . "<br/> Hours Completed = ". $NewTodoHoursCompleted);
+						echo ("Todo Name = " . $newTodoName. "<br/>Todo hours = ". $newTodoHours . "<br/> Hours Completed = ". $newTodoHoursCompleted);
 				}?>
 			</p>
 		</div>

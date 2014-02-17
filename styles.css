@@ -123,6 +123,11 @@ footer{
 	background-color : #f6f6f6;
 }
 
+.date{
+	/*padding: 4px 10px;*/
+	font-family:"Roboto", sans-serif;
+}
+
 .todo-entry{
 	/*position: relative;*/
 	display: block;
@@ -133,9 +138,6 @@ footer{
 	line-height: 24px;
 	text-align: left;
 	vertical-align: middle;
-	color: #777;
-	border-left: 5px solid #48b0e7;
-	border-radius: 3px;
 }
 
 .todo-entry:hover{
@@ -263,6 +265,13 @@ footer{
 	padding : 30px 20px;
 }
 
+.error-msg{
+	background-color : #dd4b3b;
+	padding : 10px 20px;
+	text-align : center;
+	color: #fff;
+	margin : 10px auto;
+}
 .container-box{
 	margin: 30px 0;
 	background-color : #fff;
