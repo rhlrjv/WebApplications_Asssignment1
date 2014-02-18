@@ -176,7 +176,7 @@ footer{
 }
 
 .completion{
-	width: 120px;
+	width: 100px;
 	float:left;
 	font-size: 15px;
 	font-weight: 400;
@@ -214,7 +214,8 @@ footer{
 }
 
 .increment-button{
-	width : 70px;
+	width : 75px;
+	margin-right : 10px;
 }
 
 .todo-button:hover{

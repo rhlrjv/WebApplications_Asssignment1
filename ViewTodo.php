@@ -48,8 +48,9 @@
 						<div class="clear"></div>
 					</div>
 				<?php } ?>
-				<hr/>
 				
+				
+				<hr/>
 				<?php
 				//display todos
 				$no=10;
@@ -72,7 +73,7 @@
 							</a>
 						</div>
 						<div class = "completion">
-							<?php echo($completedHours."/".$totalHours)?> completed
+							<?php echo($completedHours."/".$totalHours)?> hours
 						</div>
 						<div class="progressbar">
 						  <div style=" width : <?php echo($completedHours*100/$totalHours); ?>%"></div>
