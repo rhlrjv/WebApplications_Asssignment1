@@ -124,7 +124,7 @@ footer{
 }
 
 .date{
-	/*padding: 4px 10px;*/
+	padding: 4px 10px;
 	font-family:"Roboto", sans-serif;
 }
 
@@ -138,6 +138,10 @@ footer{
 	line-height: 24px;
 	text-align: left;
 	vertical-align: middle;
+	color: #777;
+	border-left: 5px solid #48b0e7;
+	border-radius: 3px;
+
 }
 
 .todo-entry:hover{
@@ -384,7 +388,7 @@ nav a:hover{
 	font-family: "roboto light"
 }
 
-.settings{
+.todo-link{
 	margin: 0 5px 20px;
 }
 

@@ -1,38 +1,40 @@
 <?php
-	session_save_path("sess");
-	session_start();
-	
 	class user{
-		var $hostname_dbconn = 'localhost';      //Database server LOCATION
-		var $database_dbconn = 'postgres';       //Database NAME
-		var $username_dbconn = 'postgres';       //Database USERNAME
-		var $password_dbconn = 'ishaan';         //Database PASSWORD
-		var $hostport_dbconn = '5432';
 		//table fields
-		var $user_table = 'users';               //Users table name
-		var $username_col = 'username';          //USERNAME column (value MUST be valid email)
-		var $password_col = 'password';          //PASSWORD column
+		var $user_table = 'users';         	//Users table name
+		var $username_col = 'username';		//USERNAME column (value MUST be valid email)
+		var $password_col = 'pwd';          //PASSWORD column
+		var $email_col = 'email';			//EMAIL column
+		var $dob_col = 'dob';				//DATE OF BIRTH column
 		
 		var $dbconn = '';
 		
 		//connect to database
 		function dbconnect()
 		{
-		
-			$connectionString = "host=$this->hostname_dbconn port=$this->hostport_dbconn dbname=$this->database_dbconn user=$this->username_dbconn password=$this->password_dbconn";
-			$this->dbconn = pg_connect($connectionString) or die ('Unable to connect to the database.');
-			
+			$dbhostname = $GLOBALS["hostname_db"];
+			$dbport = $GLOBALS["port_db"];
+			$dbname = $GLOBALS["name_db"];
+			$dbuser = $GLOBALS["user_db"];
+			$dbpwd = $GLOBALS["password_db"];
+			$connectionString = "host=$dbhostname port=$dbport dbname=$dbname user=$dbuser password=$dbpwd";
+			$this->dbconn = pg_connect($connectionString);
+			if(!$this->dbconn)
+			{
+				setMessage("Can't connect to the database");	
+				exit;
+			}
 			return;
 		}
 		
 		//Sign up as new user
-		function signup($argUsername, $argPassword)
+		function signup($argUsername, $argPassword, $argEmail, $argDob)
 		{
 			if(($this->dbconn)  != '')
 			{
-				$signup_query="INSERT INTO $this->user_table (username, password) values($1, $2);";
+				$signup_query="INSERT INTO $this->user_table ($this->username_col, $this->password_col, $this->email_col, $this->dob_col) values($1, $2, $3, $4);";
 				$result = pg_prepare($this->dbconn, "my_query", $signup_query);
-				$result = pg_execute($this->dbconn, "my_query", array($argUsername, $argPassword));
+				$result = pg_execute($this->dbconn, "my_query", array($argUsername, $argPassword, $argEmail, $argDob));
 				if($result)
 					return true; 
 				else
@@ -40,31 +42,24 @@
 			}
 		}
 		
-		function login($aUsername, $aPassword){
-			
-			if(($this->dbconn)  != ''){
-				//echo('logging in');
-				$login_query="SELECT * FROM $this->user_table where $this->user_column = $1 AND $this->pass_column = $2;";
+		//Login to app
+		function login($argUsername, $argPassword)
+		{
+			if(($this->dbconn)  != '')
+			{
+				$login_query="SELECT * FROM $this->user_table where $this->username_col = $1 AND $this->password_col = $2;";
 				$result = pg_prepare($this->dbconn, "my_query", $login_query);
-				$result = pg_execute($this->dbconn, "my_query", array($aUsername,$aPassword));
+				$result = pg_execute($this->dbconn, "my_query", array($argUsername,$argPassword));
 				
-				if(pg_num_rows($result)==0 || !($result)){
-					//echo "no result";
-					return false;
-				}else{
-					$row = pg_fetch_array($result);
-					$_SESSION['isloggedin']=$row[password];
-					return true;
+				if($result)
+				{
+					$rows = pg_num_rows($result); 
+					if($rows)
+						return true;
+					else
+						return false;
 				}
 			}
-			else{
-				//echo ("Cannot log in");
-				return false;
-			}
-		}
-		
-		function logout(){
-			$_SESSION['isloggedin'] = "";
 		}
 		
 		function logincheck($aLogincode){
@@ -84,6 +79,11 @@
 			}
 			return false;
 		}
+		
+		function logout(){
+			$_SESSION['isloggedin'] = "";
+		}
+		
 
 		
 	}

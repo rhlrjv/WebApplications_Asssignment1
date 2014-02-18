@@ -8,7 +8,7 @@
 		
 		<div class = "wrap">
 			<div class = "container-box">
-				<a class="right settings" href = "?page=settings">Settings</a>
+				<a class="right todo-link" href = "?page=logout">Logout</a>
 				<div class="clear"></div>
 				<hr/>
 				
@@ -64,14 +64,6 @@
 				<?php } ?>
 
 			</div>
-			<br/>
-			<br/>
-			<p> 
-				<?php 
-					if ($NewTodoName !=""){
-						echo ("Todo Name = " . $NewTodoName. "<br/>Todo hours = ". $NewTodoHours . "<br/> Hours Completed = ". $NewTodoHoursCompleted);
-				}?>
-			</p>
 		</div>
 		<?php require 'ViewFooter.php'; ?>
 	</body>

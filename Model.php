@@ -4,6 +4,10 @@
 	session_save_path("$session_save_path");
 	session_start();
 	
+	require ("userclass.php");
+	$userobj = new user();	//Instantiate object of user class
+	$userobj->dbconnect();	//Connect to database
+	
 	if(!isset($_SESSION['AppState']))
 		$_SESSION['AppState'] = "l_out";
 		
@@ -26,11 +30,13 @@
 			case "logged_in":
 				$_SESSION['AppState'] = "l_in";
 				$_SESSION['Page'] = "todo";
+				header("Location: ?page=todo"); //reload to new page
 				return true;
 				break;
 			case "logged_out":
 				$_SESSION['AppState'] = "l_out";
 				$_SESSION['Page'] = "home";
+				header("Location: ");			//reload to new page
 				return true;
 				break;
 			default:
