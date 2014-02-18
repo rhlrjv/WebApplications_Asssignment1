@@ -150,7 +150,7 @@
 				setErrorMsg("Enter your password");
 			else
 			{
-				if($GLOBALS['userobj']->login($_REQUEST['UserName'], $_REQUEST['Password']) == true)
+				if($GLOBALS['userobj']->login($_SESSION['dbconn'], $_REQUEST['UserName'], $_REQUEST['Password']) == true)
 				{
 					setState("logged_in");
 				}
@@ -186,7 +186,7 @@
 				//$usersignup = new user();	//Instantiate object of user class
 				//$usersignup->dbconnect();	//Connect to database
 				
-				if($GLOBALS['userobj']->signup($_REQUEST['UserName'], $_REQUEST['Password'], $_REQUEST['email'], $_REQUEST['dob']) == true)
+				if($GLOBALS['userobj']->signup($_SESSION['dbconn'], $_REQUEST['UserName'], $_REQUEST['Password'], $_REQUEST['email'], $_REQUEST['dob']) == true)
 				{
 					setMsg("User added. Please login to continue.");
 					setPage("login");

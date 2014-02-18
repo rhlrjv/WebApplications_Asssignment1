@@ -6,7 +6,20 @@
 	
 	require ("userclass.php");
 	$userobj = new user();	//Instantiate object of user class
-	$userobj->dbconnect();	//Connect to database
+	//$userobj->dbconnect();	//Connect to database
+	
+	/*Connect to database*/
+	$dbhostname = "localhost";
+	$dbport = "5432";
+	$dbname = $db_name;
+	$dbuser = $db_user;
+	$dbpwd = $db_password;
+	$connectionString = "host=$dbhostname port=$dbport dbname=$dbname user=$dbuser password=$dbpwd";
+	
+	$_SESSION['dbconn'] = pg_connect($connectionString);
+	if(!$_SESSION['dbconn'])
+		setErrorMsg("Can't connect to the database");
+	/* end: Connect to database*/
 	
 	if(!isset($_SESSION['AppState']))
 		$_SESSION['AppState'] = "l_out";
