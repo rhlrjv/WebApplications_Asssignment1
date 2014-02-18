@@ -55,6 +55,9 @@
 				//display todos
 				$no=10;
 				$editTodo = 4;
+				$sumTotalHours = 0;
+				$sumCompletedHours = 0;
+				
 				for($i=0;$i<$no;$i++)
 				{
 					$completedHours = rand(0,5);
@@ -65,6 +68,9 @@
 						$completed = true;
 					else
 						$completed = false;
+					
+					$sumTotalHours = $sumTotalHours + $totalHours;
+					$sumCompletedHours = $sumCompletedHours + $completedHours;
 				?>
 					<div class="todo-entry <?php if($important) echo("important");?> <?php if($completed!=0) echo("completed");?>">
 						<div class="todo-name">
@@ -111,8 +117,56 @@
 					</div>
 				<hr/>
 				<?php } ?>
-
+				
 			</div>
+			<?php if( $sumTotalHours > 0 && $sumTotalHours > $sumCompletedHours){ ?>
+				<div class = "container-box">
+					<h1> Summary </h1>
+					<div class = "circle-outer">
+						<div style = "
+						<?php
+							$diameter = ($sumCompletedHours * 300) / $sumTotalHours;
+							$left = (300 - $diameter)/2 ;
+							$top = (300 - $diameter) ;
+							
+							echo(" 	left : ". $left ."px;
+									top : ". $top ."px;
+									width: ". $diameter ."px;
+									height: ". $diameter ."px;
+									-moz-border-radius: ". $diameter/2 ."px;
+									-webkit-border-radius: ". $diameter/2 ."px;
+									-o-border-radius: ". $diameter/2 ."px;
+									border-radius: ". $diameter/2 ."px; ");
+						?>
+						" class = "circle-inner"></div> 
+					</div>
+					
+					<div class = "summary-right">
+						<span class = "heading">Total hours	</span><?php echo($sumTotalHours);?>  hours<br/>
+						<span class = "heading">Completed hours	</span><?php echo($sumCompletedHours);?>  hours<br/>
+						<span class = "heading">% Complete	</span>
+							<?php $percent = ($sumCompletedHours*100 )/ $sumTotalHours; echo($percent);?>  
+							%<br/>
+						<div class = "clear"></div>
+						<br/>
+						<hr/>
+						<br/>
+						<span class = "heading">Days needed	</span>
+							<?php $days = ($sumTotalHours - $sumCompletedHours)/6;
+							echo("$days");?>
+							days<br/>
+						<form method="post">
+							<span class = "heading" >RATE	:</span><input class="text-entry summary-form"  value = "<?php echo( 6 );?>" name="TodoRate" type="number"/> hrs/day
+							<br/>
+							<br/>
+							<input class = "summary-form btn right" type="submit" name="UpdateTodoRate" value="Update"/>
+						</form>
+					</div>
+					
+					<div class = "clear"></div>
+				</div>
+			<?php } ?>
+			
 		</div>
 		<?php require 'ViewFooter.php'; ?>
 	</body>
