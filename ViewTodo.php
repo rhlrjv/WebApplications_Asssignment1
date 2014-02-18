@@ -61,9 +61,9 @@
 					$important = rand(0	,1);
 					$todoName = "Name of the Todo #" . ($i+1);
 					if ( $totalHours== $completedHours)
-						$completed =1;
+						$completed = true;
 					else
-						$completed = 0;
+						$completed = false;
 				?>
 					<div class="todo-entry <?php if($important) echo("important");?> <?php if($completed!=0) echo("completed");?>">
 						<div class="todo-name">
@@ -77,28 +77,17 @@
 						<div class="progressbar">
 						  <div style=" width : <?php echo($completedHours*100/$totalHours); ?>%"></div>
 						</div>
-						<?php 
-						if($completed==0)
-						{ ?>
-							<div>
-								<form method="post">
-									<input type="hidden" value="<?php echo($i);?>" name="todoIncrement"/>
-									<input class = "todo-button" type="submit" value="Increment" name="todoIncrement"/>
-								</form>
-							</div>
-						<?php 
-						}
-						else{
-						?>
-							<div>
-								<form method="post">
-									<input type="hidden" value="<?php echo($i);?>" name="TodoID"/>
-									<input class = "todo-button delete-btn" type="submit" value="Delete" name="DeleteTodo"/>
-								</form>
-							</div>
-						<?php
-						}
-						?>
+						
+						<div class="right">
+							<form  method="post">
+								<input type="hidden" value="<?php echo($i);?>" name="TodoID"/>
+								<input class = "todo-button increment-button <?php if($completed) echo("disabled"); ?>" type="submit" value="Increment" name="IncrementTodo" <?php if($completed) echo("disabled"); ?>/>
+								<input class = "todo-button <?php if($completedHours == 0) echo("disabled"); ?>" type="submit" value=" " style = "background-image: url('images/dec.png');"name="DecrimentTodo" <?php if($completedHours == 0) echo("disabled"); ?>/>
+								<input class = "red-btn todo-button" type="submit" value=" " style = "background-image: url('images/del.png');" name="DeleteTodo"/>
+								
+							</form>
+						</div>
+						
 						<div class="clear"></div>
 						
 						<?php if( isset($_REQUEST['editIndex']) && $i == $_REQUEST['editIndex']) //to edit selected todo

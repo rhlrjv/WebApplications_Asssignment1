@@ -96,14 +96,6 @@ footer{
 	color: #fff;
 }
 
-.red-btn {
-	background-color: #dd4b3b;
-}
-
-.red-btn:hover {
-	background-color: #c04133;
-}
-
 .text-entry{
 	/*position: relative;*/
 	display: inline-block;
@@ -174,7 +166,7 @@ footer{
 }
 
 .todo-name{
-	width:520px;
+	width:460px;
 	float:left;
 	cursor: pointer;
 }
@@ -211,12 +203,18 @@ footer{
 	background-color: #f6f6f6;
 	border-radius: 5px;
 	border: 1px solid #bbbbbb;
-	float: right;
 	margin: 0 0 0 5px;
-	height: 22px;
+	float: left;
+	height: 24px;
 	cursor: pointer;
-	width : 72px;
+	width : 24px;
 	text-align:center;
+	background-size: cover;
+	background-position: center;
+}
+
+.increment-button{
+	width : 70px;
 }
 
 .todo-button:hover{
@@ -233,6 +231,18 @@ footer{
 	background-color: #c04133;
 }
 
+.red-btn {
+	background-color: #dd4b3b;
+}
+
+.red-btn:hover {
+	background-color: #c04133;
+}
+
+.disabled{
+	opacity:0.2;
+	cursor: auto;
+}
 .chkbox{
 	display: inline-block;
 	cursor: pointer;
