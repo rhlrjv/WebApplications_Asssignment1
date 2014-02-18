@@ -12,11 +12,11 @@
 		//connect to database
 		function dbconnect()
 		{
-			$dbhostname = $GLOBALS["hostname_db"];
-			$dbport = $GLOBALS["port_db"];
-			$dbname = $GLOBALS["name_db"];
-			$dbuser = $GLOBALS["user_db"];
-			$dbpwd = $GLOBALS["password_db"];
+			$dbhostname = "localhost";
+			$dbport = "5432";
+			$dbname = $GLOBALS["db_name"];
+			$dbuser = $GLOBALS["db_user"];
+			$dbpwd = $GLOBALS["db_password"];
 			$connectionString = "host=$dbhostname port=$dbport dbname=$dbname user=$dbuser password=$dbpwd";
 			$this->dbconn = pg_connect($connectionString);
 			if(!$this->dbconn)

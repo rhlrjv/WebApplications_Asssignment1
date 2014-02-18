@@ -208,6 +208,18 @@
 	// manages user events that take place in todo overview page
 	function todoController()
 	{
+		if(isset($_REQUEST['AddTodo']))
+		{
+			//add a new todo
+		}
+		else if(isset($_REQUEST['UpdateTodo']))
+		{
+			//add a new todo
+		}
+		else if(isset($_REQUEST['DeleteTodo']))
+		{
+			//add a new todo
+		}
 	}
 	
 	function profileController()

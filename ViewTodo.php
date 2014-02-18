@@ -92,8 +92,8 @@
 						?>
 							<div>
 								<form method="post">
-									<input type="hidden" value="<?php echo($i);?>" name="todoDelete"/>
-									<input class = "todo-button delete-btn" type="submit" value="Delete" name="todoDelete"/>
+									<input type="hidden" value="<?php echo($i);?>" name="TodoID"/>
+									<input class = "todo-button delete-btn" type="submit" value="Delete" name="DeleteTodo"/>
 								</form>
 							</div>
 						<?php
@@ -106,13 +106,14 @@
 							<div class = "form">
 								<a class="right todo-link" href = "?page=cancel">Cancel</a>
 								<form method="post">
+									<input type = "hidden" value = "<?php echo($i) ;?>" name="TodoID"/>
 									<input class="text-entry ninety-width"  value = "<?php echo($todoName);?>" name="TodoName" type="text"/>
 									<input class="text-entry quarter-width left"  value = "<?php echo($totalHours);?>" name="TodoHours" type="number"/><br/>
 									<input class="text-entry quarter-width right"  value = "<?php echo($completedHours);?>" name="TodoHoursCompleted" type="number"/><br/>
 									<input class="chkbox"  name="TodoImportant" type="checkbox" <?php if ($important) echo("checked");?>/>
 									<label> Important</label><br/>
-									<input class = "btn half-width left" type="submit" name="updateTodo" value="Update todo"/>
-									<input class = "btn red-btn half-width right" type="submit" name="deleteTodo" value="Delete ToDo"/>
+									<input class = "btn half-width left" type="submit" name="UpdateTodo" value="Update todo"/>
+									<input class = "btn red-btn half-width right" type="submit" name="DeleteTodo" value="Delete ToDo"/>
 								</form>
 								<div class="clear"></div>
 							</div>
