@@ -14,7 +14,7 @@
 				
 				<?php
 				$no=10;
-				for($i=0;$i<20;$i++)
+				for($i=0;$i<5;$i++)
 				{
 					$completedHours = rand(0,5);
 					$totalHours= rand(0,5) + $completedHours;

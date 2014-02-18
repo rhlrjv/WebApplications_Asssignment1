@@ -27,6 +27,19 @@
 			loggedInAccess();	//access to pages when logged IN
 			todoController();
 			break;
+		case "profile":
+			loggedInAccess();	//access to pages when logged IN
+			profileController();
+			break;
+		case "news":
+			loggedInAccess();
+			loggedOutAccess();
+			break;
+		case "contact":
+			loggedInAccess();
+			loggedOutAccess();
+			break;
+		
 	}
 	
 	//switch case to choose the view after all user events have been executed
@@ -43,6 +56,15 @@
 			break;
 		case "todo":
 			$view = "viewTodo.php";
+			break;
+		case "profile":
+			$view = "viewProfile.php";
+			break;
+		case "news":
+			$view = "viewNews.php";
+			break;
+		case "contact":
+			$view = "viewContact.php";
 			break;
 	}
 	
@@ -68,6 +90,12 @@
 					case "signup":
 						setPage("signup");
 						break;
+					case "news":
+						setPage("news");
+						break;
+					case "contact":
+						setPage("contact");
+						break;
 					default:
 						setPage("home");
 						break;
@@ -88,6 +116,15 @@
 						break;
 					case "logout":
 						setState("logged_out");
+						break;
+					case "profile":
+						setPage("profile");
+						break;
+					case "news":
+						setPage("news");
+						break;
+					case "contact":
+						setPage("contact");
 						break;
 					default:
 						setPage("todo");
@@ -151,14 +188,21 @@
 				
 				if($GLOBALS['userobj']->signup($_REQUEST['UserName'], $_REQUEST['Password'], $_REQUEST['email'], $_REQUEST['dob']) == true)
 				{
-					setPage("login");
 					setErrorMsg("User added. Please login to continue.");
+					setPage("login");
 					header("Location: ?page=login");
+					exit;
 				}
 				else
 					setErrorMsg("Database error. Please sign up again.");
 			}
 		}
+		else if(isset($_REQUEST['cancelSignup']))
+		{
+			setPage("home");
+			header("Location: ");
+		}
+			
 	}
 	
 	// manages user events that take place in todo overview page
@@ -166,4 +210,7 @@
 	{
 	}
 	
+	function profileController()
+	{
+	}
 ?> 

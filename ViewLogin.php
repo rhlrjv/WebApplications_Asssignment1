@@ -15,7 +15,8 @@
 					<input class = "btn half-width left" type="submit" name="submitlogin" value="Login"/>
 					<input class = "btn red-btn half-width right" type="submit" name="submitSignup" value="New User"/>
 				</form>
-				<div style="clear:both"></div>
+				<div class="clear"></div>
+				<div class = "center surround-space"> <a href="?page=home">Forgot Password </a></div>
 			</div>
 			
 			<?php
@@ -23,9 +24,9 @@
 				$ErrorMsg = getErrorMsg();
 				if ($ErrorMsg != ""){
 				?>
-				<div class = "form error-msg">
-					<?php echo($ErrorMsg);?>
-				</div>
+					<div class = "form error-msg">
+						<?php echo($ErrorMsg);?>
+					</div>
 				<?php 
 				} 
 			?>

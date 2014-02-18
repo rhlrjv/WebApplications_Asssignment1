@@ -14,8 +14,8 @@
 			<?php } ?>
 			
 			
-			<a <?php if($view == "viewNews.php") echo("class = \"selected\""); ?> href = "?page=addtodo">News</a>
-			<a <?php if($view == "viewContact.php") echo("class = \"selected\""); ?> href = "?page=addtodo">Contact</a>
+			<a <?php if($view == "viewNews.php") echo("class = \"selected\""); ?> href = "?page=news">News</a>
+			<a <?php if($view == "viewContact.php") echo("class = \"selected\""); ?> href = "?page=contact">Contact</a>
 		</nav>
 		<div class="clear"></div>
 	</div>
