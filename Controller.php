@@ -181,6 +181,8 @@
 				setErrorMsg("Enter your date of birth");
 			else if ($_REQUEST['Password'] != $_REQUEST['reEnterPassword'])
 				setErrorMsg("Passwords don't match");
+			else if ($GLOBALS['userobj']->duplicateUsername($_SESSION['dbconn'], $_REQUEST['UserName']))
+				setErrorMsg("Username already exists. Pick another one!");
 			else
 			{
 				//$usersignup = new user();	//Instantiate object of user class
