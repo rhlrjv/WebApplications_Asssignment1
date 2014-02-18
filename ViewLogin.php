@@ -16,20 +16,29 @@
 					<input class = "btn red-btn half-width right" type="submit" name="submitSignup" value="New User"/>
 				</form>
 				<div class="clear"></div>
-				<div class = "center surround-space"> <a href="?page=home">Forgot Password </a></div>
+				<div class = "center surround-space"> <a href="?page=home">Forgot Password</a></div>
 			</div>
 			
 			<?php
-				//show Error Msg
+				//show Msgs
 				$ErrorMsg = getErrorMsg();
+				$Msg = getMsg();
 				if ($ErrorMsg != ""){
 				?>
-					<div class = "form error-msg">
+					<div class = "form error message">
 						<?php echo($ErrorMsg);?>
 					</div>
 				<?php 
 				} 
+				else if ($Msg != ""){
+				?>
+					<div class = "form message">
+						<?php echo($Msg);?>
+					</div>
+				<?php 
+				} 
 			?>
+			
 			
 		</div>
 		<?php require 'ViewFooter.php'; ?>

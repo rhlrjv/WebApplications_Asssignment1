@@ -188,13 +188,13 @@
 				
 				if($GLOBALS['userobj']->signup($_REQUEST['UserName'], $_REQUEST['Password'], $_REQUEST['email'], $_REQUEST['dob']) == true)
 				{
-					setErrorMsg("User added. Please login to continue.");
+					setMsg("User added. Please login to continue.");
 					setPage("login");
 					header("Location: ?page=login");
 					exit;
 				}
 				else
-					setErrorMsg("Database error. Please sign up again.");
+					setErrorMsg("Signup error. Please try again.");
 			}
 		}
 		else if(isset($_REQUEST['cancelSignup']))

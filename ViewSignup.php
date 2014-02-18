@@ -22,16 +22,25 @@
 			</div>
 			
 			<?php
-				//show Error Msg
+				//show Msgs
 				$ErrorMsg = getErrorMsg();
+				$Msg = getMsg();
 				if ($ErrorMsg != ""){
 				?>
-				<div class = "form error-msg">
-					<?php echo($ErrorMsg);?>
-				</div>
+					<div class = "form error message">
+						<?php echo($ErrorMsg);?>
+					</div>
+				<?php 
+				} 
+				else if ($Msg != ""){
+				?>
+					<div class = "form message">
+						<?php echo($Msg);?>
+					</div>
 				<?php 
 				} 
 			?>
+			
 		</div>
 		<?php require 'ViewFooter.php'; ?>
 	</body>

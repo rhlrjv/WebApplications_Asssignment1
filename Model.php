@@ -16,6 +16,9 @@
 		
 	if(!isset($_SESSION['ErrMsg']))
 		$_SESSION['ErrMsg'] = "";
+		
+	if(!isset($_SESSION['Msg']))
+		$_SESSION['Msg'] = "";
 	
 			
 	function clearSession()
@@ -78,6 +81,20 @@
 	{
 		$errMsg = $_SESSION['ErrMsg'];
 		$_SESSION['ErrMsg'] = "";
+		return $errMsg;
+	}
+	
+	function setMsg($errMsg)
+	{
+		$_SESSION['Msg'] = $errMsg;
+		return true;
+	}
+	
+	//returns and Resets Error msg
+	function getMsg()
+	{
+		$errMsg = $_SESSION['Msg'];
+		$_SESSION['Msg'] = "";
 		return $errMsg;
 	}
 ?>
