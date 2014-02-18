@@ -125,7 +125,7 @@
 					<div class = "circle-outer">
 						<div style = "
 						<?php
-							$diameter = ($sumCompletedHours * 300) / $sumTotalHours;
+							$diameter =  sqrt($sumCompletedHours / $sumTotalHours) *300;
 							$left = (300 - $diameter)/2 ;
 							$top = (300 - $diameter) ;
 							
@@ -145,7 +145,7 @@
 						<span class = "heading">Total hours	</span><?php echo($sumTotalHours);?>  hours<br/>
 						<span class = "heading">Completed hours	</span><?php echo($sumCompletedHours);?>  hours<br/>
 						<span class = "heading">% Complete	</span>
-							<?php $percent = ($sumCompletedHours*100 )/ $sumTotalHours; echo($percent);?>  
+							<?php $percent = ($sumCompletedHours*100 )/ $sumTotalHours; echo number_format((float)$percent, 2, '.', '');?>  
 							%<br/>
 						<div class = "clear"></div>
 						<br/>
@@ -153,13 +153,13 @@
 						<br/>
 						<span class = "heading">Days needed	</span>
 							<?php $days = ($sumTotalHours - $sumCompletedHours)/6;
-							echo("$days");?>
+							echo number_format((float)$days, 2, '.', '');?>
 							days<br/>
 						<form method="post">
 							<span class = "heading" >RATE	:</span><input class="text-entry summary-form"  value = "<?php echo( 6 );?>" name="TodoRate" type="number"/> hrs/day
 							<br/>
 							<br/>
-							<input class = "summary-form btn right" type="submit" name="UpdateTodoRate" value="Update"/>
+							<input class = "summary-form btn right" type="submit" name="UpdateTodoRate" value="Update rate"/>
 						</form>
 					</div>
 					
