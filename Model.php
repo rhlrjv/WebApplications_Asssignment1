@@ -6,8 +6,7 @@
 	
 	require ("userclass.php");
 	$userobj = new user();	//Instantiate object of user class
-	//$userobj->dbconnect();	//Connect to database
-	
+		
 	/*Connect to database*/
 	$dbhostname = "localhost";
 	$dbport = "5432";

@@ -7,15 +7,30 @@
 		var $email_col = 'email';			//EMAIL column
 		var $dob_col = 'dob';				//DATE OF BIRTH column
 		
-		
+		//Checking if given username already exists in the user table
+		function duplicateUsername ($dbconn, $argUsername)
+		{
+			$duplicate_username_query="SELECT * FROM $this->user_table where $this->username_col = $1;";
+			$result = pg_prepare($dbconn, "my_query", $duplicate_username_query);
+			$result = pg_execute($dbconn, "my_query", array($argUsername));
+			
+			if($result)
+			{
+				$rows = pg_num_rows($result);
+				if($rows)
+					return true;
+				else
+					return false;
+			}
+		}
 		//Sign up as new user
 		function signup($dbconn, $argUsername, $argPassword, $argEmail, $argDob)
 		{
 			if($dbconn != '')
 			{
 				$signup_query="INSERT INTO $this->user_table ($this->username_col, $this->password_col, $this->email_col, $this->dob_col) values($1, $2, $3, $4);";
-				$result = pg_prepare($dbconn, "my_query", $signup_query);
-				$result = pg_execute($dbconn, "my_query", array($argUsername, $argPassword, $argEmail, $argDob));
+				$result = pg_prepare($dbconn, "newuser_query", $signup_query);
+				$result = pg_execute($dbconn, "newuser_query", array($argUsername, $argPassword, $argEmail, $argDob));
 				if($result)
 					return true; 
 				else
