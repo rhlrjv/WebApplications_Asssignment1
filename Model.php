@@ -6,6 +6,9 @@
 	
 	require ("userclass.php");
 	$userobj = new user();	//Instantiate object of user class
+	
+	require ("taskclass.php");
+	$taskobj = new task();
 		
 	/*Connect to database*/
 	$dbhostname = "localhost";
@@ -32,6 +35,9 @@
 	if(!isset($_SESSION['Msg']))
 		$_SESSION['Msg'] = "";
 	
+	if(!isset($_SESSION['Username']))
+		$_SESSION['Username'] = "";
+
 			
 	function clearSession()
 	{
@@ -108,5 +114,17 @@
 		$errMsg = $_SESSION['Msg'];
 		$_SESSION['Msg'] = "";
 		return $errMsg;
+	}
+	//sets Username
+	function setSessionUsername($uName)
+	{
+		$_SESSION['Username'] = $uName;
+		return true;
+	}
+	
+	//returns Username
+	function getSessionUsername()
+	{
+		return $_SESSION['Username'];
 	}
 ?>

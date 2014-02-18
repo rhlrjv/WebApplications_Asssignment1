@@ -153,6 +153,7 @@
 				if($GLOBALS['userobj']->login($_SESSION['dbconn'], $_REQUEST['UserName'], $_REQUEST['Password']) == true)
 				{
 					setState("logged_in");
+					$_SESSION['Username'] = $_REQUEST['UserName'];
 				}
 				else
 					setErrorMsg("Incorrect Login Details");
@@ -210,6 +211,8 @@
 		if(isset($_REQUEST['AddTodo']))
 		{
 			//add a new todo
+			$argImp = isset($_REQUEST['TodoImportant']);
+			$GLOBALS['taskobj']->addtodo($_SESSION['dbconn'], $_REQUEST['TodoName'], $_REQUEST['TodoHours'], $_REQUEST['TodoHoursCompleted'], $_REQUEST['TodoHours'], $argImp, $_SESSION['username']);
 		}
 		else if(isset($_REQUEST['UpdateTodo']))
 		{

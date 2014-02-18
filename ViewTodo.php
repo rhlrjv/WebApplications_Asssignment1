@@ -53,17 +53,21 @@
 				<hr/>
 				<?php
 				//display todos
-				$no=10;
+				$i = 0;
 				$editTodo = 4;
 				$sumTotalHours = 0;
 				$sumCompletedHours = 0;
-				
-				for($i=0;$i<$no;$i++)
+				$viewTaskObjects = $GLOBALS['taskobj']->viewAlltodo($_SESSION['dbconn'], $_SESSION['Username']);
+				for($i=0; $i<=count($viewTaskObjects); $i++)
 				{
-					$completedHours = rand(0,5);
-					$totalHours= rand(0,5) + $completedHours;
-					$important = rand(0	,1);
-					$todoName = "Name of the Todo #" . ($i+1);
+					$viewTaskObj = new task();
+					$viewTaskObj = array_pop($viewTaskObjects);
+					
+					$completedHours = $viewTaskObj->getCompletedHrs();
+					$totalHours= $viewTaskObj->getTotalHrs();
+					$important = $viewTaskObj->getImp();
+					echo ("<br/>hi".$viewTaskObj->getImp());
+					$todoName = $viewTaskObj->getTaskname();
 					if ( $totalHours== $completedHours)
 						$completed = true;
 					else
