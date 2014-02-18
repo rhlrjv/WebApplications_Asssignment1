@@ -184,10 +184,7 @@
 			else if ($GLOBALS['userobj']->duplicateUsername($_SESSION['dbconn'], $_REQUEST['UserName']))
 				setErrorMsg("Username already exists. Pick another one!");
 			else
-			{
-				//$usersignup = new user();	//Instantiate object of user class
-				//$usersignup->dbconnect();	//Connect to database
-				
+			{				
 				if($GLOBALS['userobj']->signup($_SESSION['dbconn'], $_REQUEST['UserName'], $_REQUEST['Password'], $_REQUEST['email'], $_REQUEST['dob']) == true)
 				{
 					setMsg("User added. Please login to continue.");

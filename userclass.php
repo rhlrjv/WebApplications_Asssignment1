@@ -29,8 +29,8 @@
 			if($dbconn != '')
 			{
 				$signup_query="INSERT INTO $this->user_table ($this->username_col, $this->password_col, $this->email_col, $this->dob_col) values($1, $2, $3, $4);";
-				$result = pg_prepare($dbconn, "my_query", $signup_query);
-				$result = pg_execute($dbconn, "my_query", array($argUsername, $argPassword, $argEmail, $argDob));
+				$result = pg_prepare($dbconn, "newuser_query", $signup_query);
+				$result = pg_execute($dbconn, "newuser_query", array($argUsername, $argPassword, $argEmail, $argDob));
 				if($result)
 					return true; 
 				else
