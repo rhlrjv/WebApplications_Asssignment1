@@ -73,8 +73,6 @@
 				<hr/>
 				<?php
 				//display todos
-				$i = 0;
-				$editTodo = 4;
 				$sumTotalHours = 0;
 				$sumCompletedHours = 0;
 				$viewTaskObjects = $GLOBALS['taskobj']->viewAlltodo($_SESSION['dbconn'], $_SESSION['Username']);

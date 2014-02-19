@@ -22,13 +22,13 @@
 						$randTocken = getRandomNumer();
 					?>
 					<input type="hidden" value="<?php echo($randTocken);?>" name="RandToken"/>
-					<input class="text-entry ninety-width"  placeholder="Enter User Name" 
+					<input class="text-entry ninety-width"  placeholder="Enter User Name*" 
 						name="UserName" type="text" <?php if($repopulate) echo("value = \"".$userName."\"");?>/>
-					<input class="text-entry quarter-width left"  placeholder="Enter Password" 
+					<input class="text-entry quarter-width left"  placeholder="Enter Password*" 
 						name="Password" type="password" />
-					<input class="text-entry quarter-width right"  placeholder="Re-enter Password" 
+					<input class="text-entry quarter-width right"  placeholder="Re-enter Password*" 
 						name="reEnterPassword" type="password"/><br/>
-					<input class="text-entry quarter-width left"  placeholder="Email ID" 
+					<input class="text-entry quarter-width left"  placeholder="Email ID*" 
 						name="email" type="email" <?php if($repopulate) echo("value = \"".$email."\"");?>/>
 					<input class="text-entry quarter-width right date" value="yyyy-mm-dd" 
 						name="dob" type="date" <?php if($repopulate) echo("value = \"".$dob."\"");?>/><br/>

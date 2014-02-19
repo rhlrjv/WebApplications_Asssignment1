@@ -38,7 +38,7 @@ header .title:hover{
 
 footer{
 	font-size:12px;
-	text-align:center;
+	text-align:left;
 	position : fixed;
 	bottom :0px;
 	width : 100%;
@@ -46,6 +46,12 @@ footer{
 	box-shadow: 0 -1px 5px rgba(0,0,0,.2);
 }
 
+footer p{
+	margin : 0 auto;
+	padding: 15px 10px;
+	width : 1060px;
+	
+}
 .inner_text_shadow
 {
     text-shadow: 1px 1px white, -1px -1px #444;
@@ -306,6 +312,12 @@ footer{
 	margin : 30px 10px;
 }
 
+.two-third{
+	width:630px;
+	float :left;
+	margin : 30px 10px;
+}
+
 .left{
 	margin-left:0px;
 	float:left;
@@ -386,8 +398,18 @@ nav a:hover{
 	height: 400px;
 }
 
+.news-banner{
+	background-image: url('images/news-banner.jpg');
+	height: 400px;
+}
+
 .home-banner{
 	background-image: url('images/home-banner.jpg');
+	height: 400px;
+}
+
+.contact-banner{
+	background-image: url('images/contact-banner.jpg');
 	height: 400px;
 }
 
@@ -479,4 +501,8 @@ hr{
 .summary-form{
 
 	margin : 0;
+}
+
+.homepage{
+	height: 250px;
 }
