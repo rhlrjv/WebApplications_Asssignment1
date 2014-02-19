@@ -292,15 +292,43 @@
 			{
 			//update a new todo
 			//get the ID of the current todo by using : $_REQUEST['TodoID'];
-			
-				if(true)//things work out
+				if($GLOBALS['taskobj']->checkIdExists ($_SESSION['dbconn'], $_REQUEST['TodoID'], $_SESSION['Username']))
 				{
-					setMsg("Todo Updated");
-					clrEditTodoID();
+					if(isset($_REQUEST['TodoImportant']))
+					$argImp = 1;
+					else
+						$argImp = 0;
+						
+					if($_REQUEST['TodoName'] == "")
+						setErrorMsg("Please enter a task name.");
+					else if($_REQUEST['TodoHours'] < $_REQUEST['TodoHoursCompleted'])
+						setErrorMsg("Total number of Hours lesser than Hours Completed. Please re-enter data.");
+					else if($_REQUEST['TodoHours'] == "" || $_REQUEST['TodoHours'] <= 0)
+						setErrorMsg("Please enter a valid Total number of Hours.");
+					else if($_REQUEST['TodoHoursCompleted'] < 0)
+						setErrorMsg("Please enter a positive Hours Completed.");
+					else 
+					{
+						if($_REQUEST['TodoHoursCompleted'] == "")
+							$argHrsCompleted = 0;
+						else
+							$argHrsCompleted = $_REQUEST['TodoHoursCompleted'];
+						if($GLOBALS['taskobj']->edittodo($_SESSION['dbconn'], $_REQUEST['TodoID'], $_REQUEST['TodoName'], $_REQUEST['TodoHours'], $argHrsCompleted, $argImp, $_SESSION['Username']))//things work out
+						{
+							setMsg("Task edited.");
+							clrEditTodoID();
+						}
+						else
+						{
+							setErrorMsg("Error editing task. Please retry.");
+						}
+					}
+					
 				}
 				else
 				{
-					setErrorMsg("Error updating Todo. Please Retry");
+					setErrorMsg("Task Id has been changed maliciously. Please refresh page and retry");
+					clrEditTodoID();
 				}
 			}
 			else
@@ -309,6 +337,7 @@
 				header("Location: ?page=todo");
 			}
 		}
+		
 		else if(isset($_REQUEST['DeleteTodo']))
 		{
 			if ( isCorrectRandomNumer($_REQUEST['RandToken'])) // to prevent resubmission

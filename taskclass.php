@@ -72,21 +72,21 @@
 		}
 		
 		//Edit to do
-		function Edittodo($dbconn, $argId, $argTaskname, $argTotalHrs, $argCompletedhrs, $argImp, $argUsername)
+		function edittodo($dbconn, $argId, $argTaskname, $argTotalHrs, $argCompletedhrs, $argImp, $argUsername)
 		{
 			if($dbconn != '')
 			{
-				$edittodo_query="UPDATE task SET taskname = $1, totalhrs = $2, completedhrs = $3 important = $4 WHERE id = $5 AND username = $6;";
+				$edittodo_query="UPDATE task SET taskname = $1, totalhrs = $2, completedhrs = $3, important = $4 WHERE id = $5 AND username = $6;";
 				$result = pg_prepare($dbconn, "edit_query", $edittodo_query);
 				$result = pg_execute($dbconn, "edit_query", array($argTaskname, $argTotalHrs, $argCompletedhrs, $argImp, $argId, $argUsername));
 				if($result)
 				{
-						$this->username = $argUsername;
-						$this->password = $argPassword;
-						$this->email = $argEmail;
-						$this->dob = $argDob;
-						return true;
-					} 
+					$this->taskname = $argTaskname;     
+					$this->totalhrs = $argTotalHrs;		
+					$this->completedhrs = $argCompletedhrs;	
+					$this->imp = $argImp;				
+					return true;
+				} 
 				else
 					return false;
 			}
