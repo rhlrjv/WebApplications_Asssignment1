@@ -33,7 +33,7 @@
 				<a class="right todo-link" href = "?page=logout">Logout</a>
 				<a class="right todo-link" href = "?page=addTodo">Add Todo</a>
 				<div class="clear"></div>
-				<?php if( isset($_REQUEST['page']) && $_REQUEST['page']=="addTodo") //to add new todo
+				<?php if($_SESSION['AddTodo']) //to add new todo
 				{ ?>
 					<div class = "form">
 						<h1> Add a new To-Do </h1>	
@@ -81,7 +81,7 @@
 				?>
 					<div class="todo-entry <?php if($important) echo("important");?> <?php if($completed!=0) echo("completed");?>">
 						<div class="todo-name">
-							<a href="?page=editTodo&editIndex=<?php echo($i)?>">
+							<a href="?page=editTodo&editIndex=<?php echo($todoId)?>">
 								<?php echo($todoName);?>
 							</a>
 						</div>
@@ -94,7 +94,7 @@
 						
 						<div class="right">
 							<form  method="post">
-								<input type="hidden" value="<?php echo($i);?>" name="TodoID"/>
+								<input type="hidden" value="<?php echo($todoId);?>" name="TodoID"/>
 								<input class = "todo-button increment-button <?php if($completed) echo("disabled"); ?>" type="submit" value="Increment" name="IncrementTodo" <?php if($completed) echo("disabled"); ?>/>
 								<input class = "todo-button <?php if($completedHours == 0) echo("disabled"); ?>" type="submit" value=" " style = "background-image: url('images/dec.png');"name="DecrimentTodo" <?php if($completedHours == 0) echo("disabled"); ?>/>
 								<input class = "red-btn todo-button" type="submit" value=" " style = "background-image: url('images/del.png');" name="DeleteTodo"/>
@@ -104,12 +104,12 @@
 						
 						<div class="clear"></div>
 						
-						<?php if( isset($_REQUEST['editIndex']) && $i == $_REQUEST['editIndex']) //to edit selected todo
+						<?php if(getEditTodoID() == $todoId) //to edit selected todo
 						{ ?>
 							<div class = "form">
 								<a class="right todo-link" href = "?page=cancel">Cancel</a>
 								<form method="post">
-									<input type = "hidden" value = "<?php echo($i) ;?>" name="TodoID"/>
+									<input type = "hidden" value = "<?php echo($todoId) ;?>" name="TodoID"/>
 									<input class="text-entry ninety-width"  value = "<?php echo($todoName);?>" name="TodoName" type="text"/>
 									<input class="text-entry quarter-width left"  value = "<?php echo($totalHours);?>" name="TodoHours" type="number"/><br/>
 									<input class="text-entry quarter-width right"  value = "<?php echo($completedHours);?>" name="TodoHoursCompleted" type="number"/><br/>
@@ -159,21 +159,25 @@
 						<hr/>
 						<br/>
 						<span class = "heading">Days needed	</span>
-							<?php $days = ($sumTotalHours - $sumCompletedHours)/6;
+							<?php $days = ($sumTotalHours - $sumCompletedHours)/$_SESSION['TodoRate'];
 							echo number_format((float)$days, 2, '.', '');?>
 							days<br/>
 						<form method="post">
-							<span class = "heading" >RATE	:</span><input class="text-entry summary-form"  value = "<?php echo( 6 );?>" name="TodoRate" type="number"/> hrs/day
+							<span class = "heading" >RATE</span><input class="text-entry summary-form"  value = "<?php echo($_SESSION['TodoRate']);?>" name="TodoRate" type="number"/> hrs/day
 							<br/>
 							<br/>
-							<input class = "summary-form btn right" type="submit" name="UpdateTodoRate" value="Update rate"/>
+							<input class = "summary-form btn right full-width" type="submit" name="UpdateTodoRate" value="Update rate"/>
 						</form>
 					</div>
 					
 					<div class = "clear"></div>
 				</div>
+			<?php }
+			else if( $sumTotalHours > 0 && $sumTotalHours == $sumCompletedHours){ ?>
+				<div class = "container-box">
+					<h1> Congratulations! You are a productivity ninja! </h1>
+				</div>
 			<?php } ?>
-			
 		</div>
 		<?php require 'ViewFooter.php'; ?>
 	</body>
