@@ -3,10 +3,6 @@
 	require 'config.inc';
 	require 'Model.php';
 	
-	//for testing posposes only
-	//setState("logged_out");
-	//echo(getPage());
-	
 	
 	//Define access rights and the handle user events for the various pages
 	switch(getPage())
@@ -46,25 +42,25 @@
 	switch(getPage())
 	{
 		case "home":
-			$view = "viewHome.php";
+			$view = "ViewHome.php";
 			break;
 		case "login":
-			$view = "viewLogin.php";
+			$view = "ViewLogin.php";
 			break;
 		case "signup":
-			$view = "viewSignup.php";
+			$view = "ViewSignup.php";
 			break;
 		case "todo":
-			$view = "viewTodo.php";
+			$view = "ViewTodo.php";
 			break;
 		case "profile":
-			$view = "viewProfile.php";
+			$view = "ViewProfile.php";
 			break;
 		case "news":
-			$view = "viewNews.php";
+			$view = "ViewNews.php";
 			break;
 		case "contact":
-			$view = "viewContact.php";
+			$view = "ViewContact.php";
 			break;
 	}
 	
