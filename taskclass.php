@@ -26,7 +26,6 @@
 			if(($dbconn)  != '')
 			{
 				$argId = getNextId($dbconn);
-				echo $id;
 				$addtodo_query="INSERT INTO task (id, taskname, totalhrs, completedhrs, imp, username) values($1, $2, $3, $4, $5, $6);";
 				$result = pg_prepare($dbconn, "add_query", $addtodo_query);
 				$result = pg_execute($dbconn, "add_query", array($argId, $argTaskname, $argTotalHrs, $argCompletedhrs, $argImp, $argUsername));
@@ -37,7 +36,73 @@
 			}
 		}
 		
-		//Add a new to do
+		//Delete any existing to do 
+		function deletetodo($dbconn, $argId)
+		{
+			if(($dbconn)  != '')
+			{
+				$deletetodo_query="DELETE FROM task WHERE id = $1;";
+				$result = pg_prepare($dbconn, "delete_query", $deletetodo_query);
+				$result = pg_execute($dbconn, "delete_query", array($argId));
+				if($result)
+					return true; 
+				else
+					return false;
+			}
+		}
+		
+		//Edit to do
+		function Edittodo($dbconn, $argId, $argTaskname, $argTotalHrs, $argCompletedhrs, $argImp, $argUsername)
+		{
+			if($dbconn != '')
+			{
+				$edittodo_query="UPDATE task SET taskname = $1, totalhrs = $2, completedhrs = $3 imp = $4 WHERE id = $4;";
+				$result = pg_prepare($dbconn, "edit_query", $edittodo_query);
+				$result = pg_execute($dbconn, "edit_query", array($argTaskname, $argTotalHrs, $argCompletedhrs, $argImp, $argId));
+				if($result)
+				{
+						$this->username = $argUsername;
+						$this->password = $argPassword;
+						$this->email = $argEmail;
+						$this->dob = $argDob;
+						return true;
+					} 
+				else
+					return false;
+			}
+		}
+		
+		//Decrement completed hours of a to do 
+		function decrementCompletedHrs($dbconn, $argId)
+		{
+			if(($dbconn)  != '')
+			{
+				$decrementCompletedHrs_query="UPDATE task SET completedHrs = completedHrs-1 WHERE id = $1;";
+				$result = pg_prepare($dbconn, "decrement_query", $decrementCompletedHrs_query);
+				$result = pg_execute($dbconn, "decrement_query", array($argId));
+				if($result)
+					return true; 
+				else
+					return false;
+			}
+		}
+		
+		//Increment completed hours of a to do 
+		function incrementCompletedHrs($dbconn, $argId)
+		{
+			if(($dbconn)  != '')
+			{
+				$decrementCompletedHrs_query="UPDATE task SET completedHrs = completedHrs+1 WHERE id = $1;";
+				$result = pg_prepare($dbconn, "increment_query", $incrementCompletedHrs_query);
+				$result = pg_execute($dbconn, "increment_query", array($argId));
+				if($result)
+					return true; 
+				else
+					return false;
+			}
+		}
+		
+		//View all to do on the TODO Page
 		function viewAlltodo($dbconn, $argUsername)
 		{
 			if(($dbconn)  != '')
