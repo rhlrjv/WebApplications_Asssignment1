@@ -58,15 +58,18 @@
 				$sumTotalHours = 0;
 				$sumCompletedHours = 0;
 				$viewTaskObjects = $GLOBALS['taskobj']->viewAlltodo($_SESSION['dbconn'], $_SESSION['Username']);
-				for($i=0; $i<=count($viewTaskObjects); $i++)
+				$n = count($viewTaskObjects)-1;
+				
+				$viewTaskObj = new task();
+				for($i=0; $i<$n; $i++)
 				{
-					$viewTaskObj = new task();
+					//$viewTaskObj = new task();
 					$viewTaskObj = array_pop($viewTaskObjects);
 					
+					$todoId = $viewTaskObj->getId();
 					$completedHours = $viewTaskObj->getCompletedHrs();
 					$totalHours= $viewTaskObj->getTotalHrs();
 					$important = $viewTaskObj->getImp();
-					echo ("<br/>hi".$viewTaskObj->getImp());
 					$todoName = $viewTaskObj->getTaskname();
 					if ( $totalHours== $completedHours)
 						$completed = true;

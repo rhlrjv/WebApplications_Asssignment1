@@ -56,8 +56,14 @@
 						$viewTaskObj->taskname = $row[1];
 						$viewTaskObj->totalhrs = $row[2];
 						$viewTaskObj->completedhrs = $row[3];
-						$viewTaskObj->important = $row[4];
-						//echo("<br/>$viewTaskObj->id, $viewTaskObj->taskname, $viewTaskObj->totalhrs, $viewTaskObj->completedhrs, $viewTaskObj->important ");
+						
+						if ($row[4] == 't')
+							$viewTaskObj->imp = 1;
+						else
+							$viewTaskObj->imp = 0;
+						
+							
+						//echo("<br/>$viewTaskObj->id, $viewTaskObj->taskname, $viewTaskObj->totalhrs, $viewTaskObj->completedhrs, $viewTaskObj->imp, $row[4] ");
 						array_push($viewTaskObjects, $viewTaskObj);
 						//$test = new task();
 						//$test = array_pop($viewTaskObjects);
@@ -116,7 +122,7 @@
 		
 		function getImp()
 		{
-			return $this->imp;
+			return (bool)$this->imp;
 		}
 		
 		function setImp($argImp)
