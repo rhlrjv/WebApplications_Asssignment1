@@ -1,7 +1,21 @@
-1. Task Summary (in the To do page) visualizes and calculates % complete, days needed for a given amount of rate.
-2. Cancel or delte a task using the bin button on the todo page.
-3. A minimalist and clean display of work progress. With a large increment button and smaller decrement and delete button to minimize erroneous clicks.
-4. In case a user accidentially marked a unit of work as completed (increment), we allow them to decrement (unmark) it.
-5. CSS Styling through the application for minimalist design coded from a clean slate.
-6. Dynamic creation of add to do and edit to do areas on the to do page.
-7. Display of a funny and motivating message on completing all tasks :P
+======================================================================================================================
+					CREATIVE ADDITIONS (ASSIGNMENT 1 | CP3101B)
+======================================================================================================================
+1. 	Estimate % complete, days needed for a given amount of rate.
+
+2. 	Task Summary (in the To do page) visualization using a pie chart
+
+3. 	Cancel or delete a task using the bin button on the todo page.
+
+4. 	A simple and clean display of work progress. With a large increment button and smaller decrement 
+	and delete button to minimize erroneous clicks.
+	
+5. 	In case a user accidentally marked a unit of work as completed (increment), we allow them to decrement (unmark) it.
+6. 	CSS Styling through the application for minimalist design coded from a clean slate. No frameworks used.
+
+7. 	Dynamic creation of add to do and edit to do areas on the to do page. They close on completeion. 
+	Would have been easier in javascript. Took us a while to implement with HTML/PHP alone.
+	
+8. 	Ordering tasks in todo page on importance and recently added to enhance usability.
+
+9. 	Display of a funny and motivating message on completing all tasks :P

@@ -81,7 +81,6 @@
 				$viewTaskObj = new task();
 				for($i=0; $i<$n; $i++)
 				{
-					//$viewTaskObj = new task();
 					$viewTaskObj = array_pop($viewTaskObjects);
 					
 					$todoId = $viewTaskObj->getId();
