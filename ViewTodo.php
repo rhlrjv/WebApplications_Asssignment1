@@ -5,7 +5,8 @@
 	<body>
 	
 		<?php require 'ViewHeader.php'; ?>
-		
+		<?php $randTocken = getRandomNumer(); //set the random variable to test if the form has been resubmitted
+		?>
 		<div class = "wrap">
 			
 			<?php
@@ -52,6 +53,7 @@
 										$r_imp = false;
 								}
 							?>
+							<input type="hidden" value="<?php echo($randTocken);?>" name="RandToken"/>
 							<input class="text-entry ninety-width"  placeholder="Todo name*" 
 								name="TodoName" type="text" <?php if($repopulate) echo("value = \"".$r_Name."\"");?>/>
 							<input class="text-entry quarter-width left"  placeholder="Total number of hours*" 
@@ -113,6 +115,7 @@
 						<div class="right">
 							<form  method="post">
 								<input type="hidden" value="<?php echo($todoId);?>" name="TodoID"/>
+								<input type="hidden" value="<?php echo($randTocken);?>" name="RandToken"/>
 								<input class = "todo-button increment-button <?php if($completed) echo("disabled"); ?>" type="submit" value="Increment" name="IncrementTodo" <?php if($completed) echo("disabled"); ?>/>
 								<input class = "todo-button <?php if($completedHours == 0) echo("disabled"); ?>" type="submit" value=" " style = "background-image: url('images/dec.png');"name="DecrimentTodo" <?php if($completedHours == 0) echo("disabled"); ?>/>
 								<input class = "red-btn todo-button" type="submit" value=" " style = "background-image: url('images/del.png');" name="DeleteTodo"/>
@@ -127,6 +130,7 @@
 							<div class = "form">
 								<a class="right todo-link" href = "?page=cancel">Cancel</a>
 								<form method="post">
+									<input type="hidden" value="<?php echo($randTocken);?>" name="RandToken"/>
 									<input type = "hidden" value = "<?php echo($todoId) ;?>" name="TodoID"/>
 									<input class="text-entry ninety-width"  value = "<?php echo($todoName);?>" name="TodoName" type="text"/>
 									<input class="text-entry quarter-width left"  value = "<?php echo($totalHours);?>" name="TodoHours" type="number"/><br/>
@@ -181,6 +185,7 @@
 							echo number_format((float)$days, 2, '.', '');?>
 							days<br/>
 						<form method="post">
+							<input type="hidden" value="<?php echo($randTocken);?>" name="RandToken"/>
 							<span class = "heading" >RATE</span><input class="text-entry summary-form"  value = "<?php echo($_SESSION['TodoRate']);?>" name="TodoRate" type="number"/> hrs/day
 							<br/>
 							<br/>
@@ -195,7 +200,12 @@
 				<div class = "container-box">
 					<h1> Congratulations! You are a productivity ninja! </h1>
 				</div>
-			<?php } ?>
+			<?php 
+			} else if( $sumTotalHours== 0){ ?>
+				<div class = "container-box">
+					<h1> Welcome! Add a <a href = "?page=addTodo">New Todo</a> to get started..</h1>
+				</div>
+			<?php }?>
 		</div>
 		<?php require 'ViewFooter.php'; ?>
 	</body>

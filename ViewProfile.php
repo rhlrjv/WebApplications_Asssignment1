@@ -14,11 +14,12 @@
 				$password = $currentUserObj->getPassword();
 				$email = $currentUserObj->getEmail();
 				$dob = $currentUserObj->getDob();
-				
+				$randTocken = getRandomNumer();		//to prevent form resubmissions
 			?>
 			<div class = "form">
 				<h1> Profile </h1>
 				<form method="post">
+					<input type="hidden" value="<?php echo($randTocken);?>" name="RandToken"/>
 					<input class="text-entry ninety-width"  placeholder="Enter User Name" name="profile_UserName" type="text" readonly value = "<?php echo($username);?>" />
 					<input class="text-entry quarter-width left"  placeholder="Enter Password" name="profile_Password" type="password" value = "" />
 					<input class="text-entry quarter-width right"  placeholder="Re-enter Password" name="profile_reEnterPassword" type="password" value = "" /><br/>

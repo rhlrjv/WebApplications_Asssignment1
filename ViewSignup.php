@@ -19,7 +19,9 @@
 							$email = $_REQUEST['email'] ;
 							$dob = $_REQUEST['dob'];
 						}
+						$randTocken = getRandomNumer();
 					?>
+					<input type="hidden" value="<?php echo($randTocken);?>" name="RandToken"/>
 					<input class="text-entry ninety-width"  placeholder="Enter User Name" 
 						name="UserName" type="text" <?php if($repopulate) echo("value = \"".$userName."\"");?>/>
 					<input class="text-entry quarter-width left"  placeholder="Enter Password" 

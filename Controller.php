@@ -172,30 +172,37 @@
 	{
 		if(isset($_REQUEST['submitsSignup']))
 		{
-			if($_REQUEST['UserName'] == "")
-				setErrorMsg("Enter a username");
-			else if ($_REQUEST['Password'] == "")
-				setErrorMsg("Enter your password");
-			else if ($_REQUEST['email'] == "")
-				setErrorMsg("Enter your email ID");
-			else if ($_REQUEST['dob'] == "")
-				setErrorMsg("Enter your date of birth");
-			else if ($_REQUEST['Password'] != $_REQUEST['reEnterPassword'])
-				setErrorMsg("Passwords don't match");
-			else if ($GLOBALS['userobj']->duplicateUsername($_SESSION['dbconn'], $_REQUEST['UserName']))
-				setErrorMsg("Username already exists. Pick another one!");
-			else
-			{				
-				if($GLOBALS['userobj']->signup($_SESSION['dbconn'], $_REQUEST['UserName'], $_REQUEST['Password'], $_REQUEST['email'], $_REQUEST['dob']) == true)
-				{
-					setMsg("User added. Please login to continue.");
-					setPage("login");
-					header("Location: ?page=login");
-					exit;
-				}
+			if ( isCorrectRandomNumer($_REQUEST['RandToken'])) // to prevent resubmission
+			{
+				if($_REQUEST['UserName'] == "")
+					setErrorMsg("Enter a username");
+				else if ($_REQUEST['Password'] == "")
+					setErrorMsg("Enter your password");
+				else if ($_REQUEST['email'] == "")
+					setErrorMsg("Enter your email ID");
+				else if ($_REQUEST['dob'] == "")
+					setErrorMsg("Enter your date of birth");
+				else if ($_REQUEST['Password'] != $_REQUEST['reEnterPassword'])
+					setErrorMsg("Passwords don't match");
+				else if ($GLOBALS['userobj']->duplicateUsername($_SESSION['dbconn'], $_REQUEST['UserName']))
+					setErrorMsg("Username already exists. Pick another one!");
 				else
-					setErrorMsg("Signup error. Please try again.");
-			}
+				{				
+					if($GLOBALS['userobj']->signup($_SESSION['dbconn'], $_REQUEST['UserName'], $_REQUEST['Password'], $_REQUEST['email'], $_REQUEST['dob']) == true)
+					{
+						setMsg("User added. Please login to continue.");
+						setPage("login");
+						header("Location: ?page=login");
+						exit;
+					}
+					else
+						setErrorMsg("Signup error. Please try again.");
+				}
+			}	
+			else{
+				setPage("signup");
+				header("Location: ?page=signup");
+			}	
 		}
 		else if(isset($_REQUEST['cancelSignup']))
 		{
@@ -233,43 +240,44 @@
 		}
 		if(isset($_REQUEST['AddTodo']))
 		{
-			//add a new todo
-			if(isset($_REQUEST['TodoImportant']))
-				$argImp = 1;
+			if ( isCorrectRandomNumer($_REQUEST['RandToken'])) // to prevent resubmission
+			{
+			
+				//add a new todo
+				if(isset($_REQUEST['TodoImportant']))
+					$argImp = 1;
+				else
+					$argImp = 0;
+					
+				if($_REQUEST['TodoName'] == "")
+					setErrorMsg("Please enter a task name.");
+				else if($_REQUEST['TodoHours'] < $_REQUEST['TodoHoursCompleted'])
+					setErrorMsg("Total number of Hours lesser than Hours Completed. Please re-enter data.");
+				else if($_REQUEST['TodoHours'] == "" || $_REQUEST['TodoHours'] <= 0)
+					setErrorMsg("Please enter a valid Total number of Hours.");
+				else if($_REQUEST['TodoHoursCompleted'] < 0)
+					setErrorMsg("Please enter a positive Hours Completed.");
+				else 
+				{
+					if($_REQUEST['TodoHoursCompleted'] == "")
+						$argHrsCompleted = 0;
+					else
+						$argHrsCompleted = $_REQUEST['TodoHoursCompleted'];
+					if($GLOBALS['taskobj']->addtodo($_SESSION['dbconn'], $_REQUEST['TodoName'], $_REQUEST['TodoHours'], $argHrsCompleted, $argImp, $_SESSION['Username']))//things work out
+					{
+						setMsg("New task added.");
+						$_SESSION['AddTodo'] = false;
+					}
+					else
+					{
+						setErrorMsg("Error adding task. Please retry.");
+					}
+				}
+			}
 			else
-				$argImp = 0;
-				
-			if($_REQUEST['TodoName'] == "")
 			{
-				setErrorMsg("Please enter a task name.");
-			}
-			else if($_REQUEST['TodoHours'] < $_REQUEST['TodoHoursCompleted'])
-			{
-				setErrorMsg("Total number of Hours lesser than Hours Completed. Please re-enter data.");
-			}
-			else if($_REQUEST['TodoHours'] == "" || $_REQUEST['TodoHours'] <= 0)
-			{
-				setErrorMsg("Please enter a valid Total number of Hours.");
-			}
-			else if($_REQUEST['TodoHoursCompleted'] < 0)
-			{
-				setErrorMsg("Please enter a positive Hours Completed.");
-			}
-			else 
-			{
-				if($_REQUEST['TodoHoursCompleted'] == "")
-					$argHrsCompleted = 0;
-				else
-					$argHrsCompleted = $_REQUEST['TodoHoursCompleted'];
-				if($GLOBALS['taskobj']->addtodo($_SESSION['dbconn'], $_REQUEST['TodoName'], $_REQUEST['TodoHours'], $argHrsCompleted, $argImp, $_SESSION['Username']))//things work out
-				{
-					setMsg("New task added.");
-					$_SESSION['AddTodo'] = false;
-				}
-				else
-				{
-					setErrorMsg("Error adding task. Please retry.");
-				}
+				setPage("todo");
+				header("Location: ?page=todo");
 			}
 		}
 		else if (isset($_REQUEST['CancelAddTodo']))
@@ -280,40 +288,54 @@
 		
 		else if(isset($_REQUEST['UpdateTodo']))
 		{
+			if ( isCorrectRandomNumer($_REQUEST['RandToken'])) // to prevent resubmission
+			{
 			//update a new todo
 			//get the ID of the current todo by using : $_REQUEST['TodoID'];
 			
-			if(true)//things work out
-			{
-				setMsg("Todo Updated");
-				clrEditTodoID();
-			}
-			else
-			{
-				setErrorMsg("Error updating Todo. Please Retry");
-			}
-			
-		}
-		else if(isset($_REQUEST['DeleteTodo']))
-		{
-			//delete Todo
-			//get the ID of the current todo by using : $_REQUEST['TodoID'];
-			
-			if($GLOBALS['taskobj']->checkIdExists ($_SESSION['dbconn'], $_REQUEST['TodoID'], $_SESSION['Username']))
-			{
-				if($GLOBALS['taskobj']->deletetodo ($_SESSION['dbconn'], $_REQUEST['TodoID']))
+				if(true)//things work out
 				{
-					setMsg("Task deleted");
+					setMsg("Todo Updated");
 					clrEditTodoID();
 				}
 				else
-					setErrorMsg("Error deleting task. Please retry");
-				
+				{
+					setErrorMsg("Error updating Todo. Please Retry");
+				}
 			}
 			else
 			{
-				setErrorMsg("Task Id has been changed maliciously. Please refresh page and retry");
-				clrEditTodoID();
+				setPage("todo");
+				header("Location: ?page=todo");
+			}
+		}
+		else if(isset($_REQUEST['DeleteTodo']))
+		{
+			if ( isCorrectRandomNumer($_REQUEST['RandToken'])) // to prevent resubmission
+			{
+				//delete Todo
+				//get the ID of the current todo by using : $_REQUEST['TodoID'];
+				
+				if($GLOBALS['taskobj']->checkIdExists ($_SESSION['dbconn'], $_REQUEST['TodoID'], $_SESSION['Username']))
+				{
+					if($GLOBALS['taskobj']->deletetodo ($_SESSION['dbconn'], $_REQUEST['TodoID']))
+					{
+						setMsg("Task deleted");
+						clrEditTodoID();
+					}
+					else
+						setErrorMsg("Error deleting task. Please retry");
+					
+				}
+				else
+				{
+					setErrorMsg("Task Id has been changed maliciously. Please refresh page and retry");
+					clrEditTodoID();
+				}
+			}
+			else{
+				setPage("todo");
+				header("Location: ?page=todo");
 			}
 		}
 		
@@ -322,21 +344,28 @@
 			//increment Todo
 			//get the ID of the current todo by using : $_REQUEST['TodoID'];
 			
-			if($GLOBALS['taskobj']->checkIdExists ($_SESSION['dbconn'], $_REQUEST['TodoID'], $_SESSION['Username']))
+			if ( isCorrectRandomNumer($_REQUEST['RandToken'])) // to prevent resubmission
 			{
-				if($GLOBALS['taskobj']->incrementCompletedHrs ($_SESSION['dbconn'], $_REQUEST['TodoID']))
+				if($GLOBALS['taskobj']->checkIdExists ($_SESSION['dbconn'], $_REQUEST['TodoID'], $_SESSION['Username']))
 				{
-					setMsg("Completed hours increased by 1");
-					clrEditTodoID();
+					if($GLOBALS['taskobj']->incrementCompletedHrs ($_SESSION['dbconn'], $_REQUEST['TodoID']))
+					{
+						setMsg("Completed hours increased by 1");
+						clrEditTodoID();
+					}
+					else
+						setErrorMsg("Error incrementing completed hours. Please retry");
+					
 				}
 				else
-					setErrorMsg("Error incrementing completed hours. Please retry");
-				
+				{
+					setErrorMsg("Task Id has been changed maliciously. Please refresh page and retry");
+					clrEditTodoID();
+				}
 			}
-			else
-			{
-				setErrorMsg("Task Id has been changed maliciously. Please refresh page and retry");
-				clrEditTodoID();
+			else{
+				setPage("todo");
+				header("Location: ?page=todo");
 			}
 		}
 		
@@ -345,21 +374,29 @@
 			//decrement Todo
 			//get the ID of the current todo by using : $_REQUEST['TodoID'];
 			
-			if($GLOBALS['taskobj']->checkIdExists ($_SESSION['dbconn'], $_REQUEST['TodoID'], $_SESSION['Username']))
+			if ( isCorrectRandomNumer($_REQUEST['RandToken'])) // to prevent resubmission
 			{
-				if($GLOBALS['taskobj']->decrementCompletedHrs ($_SESSION['dbconn'], $_REQUEST['TodoID'])) 
+			
+				if($GLOBALS['taskobj']->checkIdExists ($_SESSION['dbconn'], $_REQUEST['TodoID'], $_SESSION['Username']))
 				{
-					setMsg("Completed hours decreased by 1");
-					clrEditTodoID();
+					if($GLOBALS['taskobj']->decrementCompletedHrs ($_SESSION['dbconn'], $_REQUEST['TodoID'])) 
+					{
+						setMsg("Completed hours decreased by 1");
+						clrEditTodoID();
+					}
+					else
+						setErrorMsg("Error decrementing completed hours. Please retry");
+					
 				}
 				else
-					setErrorMsg("Error decrementing completed hours. Please retry");
-				
+				{
+					setErrorMsg("Task Id has been changed maliciously. Please refresh page and retry");
+					clrEditTodoID();
+				}
 			}
-			else
-			{
-				setErrorMsg("Task Id has been changed maliciously. Please refresh page and retry");
-				clrEditTodoID();
+			else{
+				setPage("todo");
+				header("Location: ?page=todo");
 			}
 		}
 		
@@ -367,14 +404,21 @@
 		{
 			//update Todo rate
 			
-			if($_REQUEST['TodoRate'] > 0 && $_REQUEST['TodoRate'] < 24)//things work out
+			if ( isCorrectRandomNumer($_REQUEST['RandToken'])) // to prevent resubmission
 			{
-				$_SESSION['TodoRate'] = $_REQUEST['TodoRate'] ;
-				setMsg("Todo Rate updated");
+				if($_REQUEST['TodoRate'] > 0 && $_REQUEST['TodoRate'] < 24)//things work out
+				{
+					$_SESSION['TodoRate'] = $_REQUEST['TodoRate'] ;
+					setMsg("Todo Rate updated");
+				}
+				else
+				{
+					setErrorMsg("Error updating Todo Rate. Please make sure the rate is between 0-24 hours per day");
+				}
 			}
-			else
-			{
-				setErrorMsg("Error updating Todo Rate. Please make sure the rate is between 0-24 hours per day");
+			else{
+				setPage("todo");
+				header("Location: ?page=todo");
 			}
 		}
 	}
@@ -383,26 +427,33 @@
 	{
 		if(isset($_REQUEST['submitUpdate']))
 		{
-			if ($_REQUEST['profile_Password'] == "")
-				setErrorMsg("Enter your password");
-			else if ($_REQUEST['profile_email'] == "")
-				setErrorMsg("Enter your email ID");
-			else if ($_REQUEST['profile_dob'] == "")
-				setErrorMsg("Enter your date of birth");
-			else if ($_REQUEST['profile_Password'] != $_REQUEST['profile_reEnterPassword'])
-				setErrorMsg("Passwords don't match");
-			else
-			{				
-				//update the todo
-				if(true)
-				{
-					setMsg("User Updated.");
-					setPage("todo");
-					header("Location: ?page=todo");
-					exit;
-				}
+			if ( isCorrectRandomNumer($_REQUEST['RandToken'])) // to prevent resubmission
+			{
+				if ($_REQUEST['profile_Password'] == "")
+					setErrorMsg("Enter your password");
+				else if ($_REQUEST['profile_email'] == "")
+					setErrorMsg("Enter your email ID");
+				else if ($_REQUEST['profile_dob'] == "")
+					setErrorMsg("Enter your date of birth");
+				else if ($_REQUEST['profile_Password'] != $_REQUEST['profile_reEnterPassword'])
+					setErrorMsg("Passwords don't match");
 				else
-					setErrorMsg("Update error. Please try again.");
+				{				
+					//update the todo
+					if(true)
+					{
+						setMsg("User Updated.");
+						setPage("todo");
+						header("Location: ?page=todo");
+						exit;
+					}
+					else
+						setErrorMsg("Update error. Please try again.");
+				}
+			}
+			else{
+				setPage("profile");
+				header("Location: ?page=profile");
 			}
 		}
 		else if(isset($_REQUEST['cancelUpdate']))
