@@ -6,6 +6,25 @@
 		var $email;
 		var $dob;
 		
+		//Get user info when username is provided
+		function getUserObj ($dbconn, $argUsername)
+		{
+			$username_query="SELECT * FROM users where username = $1;";
+			$result = pg_prepare($dbconn, "user_query", $username_query);
+			$result = pg_execute($dbconn, "user_query", array($argUsername));
+			if($result)
+			{
+				$row = pg_fetch_row($result);
+				//$profileUserObj = new task();
+				$this->username = $row[0];
+				$this->password = $row[1];
+				$this->email = $row[2];
+				$this->dob = $row[3];
+				echo("<br/>$this->username $this->password $this->email $this->dob");
+				return $this;
+			}
+		}
+		
 		//Checking if given username already exists in the user table
 		function duplicateUsername ($dbconn, $argUsername)
 		{
@@ -91,7 +110,7 @@
 		/* Get and set function for member variables*/
 		function getUsername()
 		{
-			return $username;
+			return $this->username;
 		}
 		
 		function setUsername($argUsername)
@@ -101,7 +120,7 @@
 		
 		function getPassword()
 		{
-			return $password;
+			return $this->password;
 		}
 		
 		function setPassword($argPassword)
@@ -111,7 +130,7 @@
 		
 		function getEmail()
 		{
-			return $email;
+			return $this->email;
 		}
 		
 		function setEmail($argEmail)
@@ -121,7 +140,7 @@
 		
 		function getDob()
 		{
-			return $dob;
+			return $this->dob;
 		}
 		
 		function setDob($argDob)
