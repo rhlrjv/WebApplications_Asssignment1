@@ -243,11 +243,15 @@
 			}
 			else if($_REQUEST['TodoHours'] < $_REQUEST['TodoHoursCompleted'])
 			{
-				setErrorMsg("Total Hours greater than Completed Hours. Please re-enter data.");
+				setErrorMsg("Total number of Hours lesser than Hours Completed. Please re-enter data.");
 			}
-			else if($_REQUEST['TodoHours'] == "")
+			else if($_REQUEST['TodoHours'] == "" || $_REQUEST['TodoHours'] <= 0)
 			{
-				setErrorMsg("Please enter Total Hours.");
+				setErrorMsg("Please enter a valid Total number of Hours.");
+			}
+			else if($_REQUEST['TodoHoursCompleted'] < 0)
+			{
+				setErrorMsg("Please enter a positive Hours Completed.");
 			}
 			else 
 			{
