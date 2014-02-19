@@ -97,7 +97,7 @@
 		{
 			if(($dbconn)  != '')
 			{
-				$decrementCompletedHrs_query="UPDATE task SET completedHrs = completedHrs-1 WHERE id = $1;";
+				$decrementCompletedHrs_query="UPDATE task SET completedhrs = completedhrs - 1 WHERE id = $1;";
 				$result = pg_prepare($dbconn, "decrement_query", $decrementCompletedHrs_query);
 				$result = pg_execute($dbconn, "decrement_query", array($argId));
 				if($result)
@@ -112,7 +112,7 @@
 		{
 			if(($dbconn)  != '')
 			{
-				$decrementCompletedHrs_query="UPDATE task SET completedHrs = completedHrs+1 WHERE id = $1;";
+				$incrementCompletedHrs_query="UPDATE task SET completedhrs = completedhrs + 1 WHERE id = $1;";
 				$result = pg_prepare($dbconn, "increment_query", $incrementCompletedHrs_query);
 				$result = pg_execute($dbconn, "increment_query", array($argId));
 				if($result)

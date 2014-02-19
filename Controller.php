@@ -316,24 +316,44 @@
 			//increment Todo
 			//get the ID of the current todo by using : $_REQUEST['TodoID'];
 			
-			if(true)//things work out
-				;//do nothing
+			if($GLOBALS['taskobj']->checkIdExists ($_SESSION['dbconn'], $_REQUEST['TodoID'], $_SESSION['Username']))
+			{
+				if($GLOBALS['taskobj']->incrementCompletedHrs ($_SESSION['dbconn'], $_REQUEST['TodoID']))
+				{
+					setMsg("Completed hours increased by 1");
+					clrEditTodoID();
+				}
+				else
+					setErrorMsg("Error incrementing completed hours. Please retry");
+				
+			}
 			else
 			{
-				setErrorMsg("Error Incrementing Todo. Please Retry");
+				setErrorMsg("Task Id has been changed maliciously. Please refresh page and retry");
+				clrEditTodoID();
 			}
 		}
 		
 		else if(isset($_REQUEST['DecrimentTodo']))
 		{
-			//decriment Todo
+			//decrement Todo
 			//get the ID of the current todo by using : $_REQUEST['TodoID'];
 			
-			if(true)//things work out
-				;//do nothing
+			if($GLOBALS['taskobj']->checkIdExists ($_SESSION['dbconn'], $_REQUEST['TodoID'], $_SESSION['Username']))
+			{
+				if($GLOBALS['taskobj']->decrementCompletedHrs ($_SESSION['dbconn'], $_REQUEST['TodoID'])) 
+				{
+					setMsg("Completed hours decreased by 1");
+					clrEditTodoID();
+				}
+				else
+					setErrorMsg("Error decrementing completed hours. Please retry");
+				
+			}
 			else
 			{
-				setErrorMsg("Error Incrementing Todo. Please Retry");
+				setErrorMsg("Task Id has been changed maliciously. Please refresh page and retry");
+				clrEditTodoID();
 			}
 		}
 		
