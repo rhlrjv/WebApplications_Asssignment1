@@ -20,7 +20,7 @@
 				$this->password = $row[1];
 				$this->email = $row[2];
 				$this->dob = $row[3];
-				echo("<br/>$this->username $this->password $this->email $this->dob");
+				
 				return $this;
 			}
 		}
