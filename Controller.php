@@ -440,9 +440,9 @@
 				else
 				{				
 					//update the todo
-					if(true)
+					if($GLOBALS['userobj']->updateProfile($_SESSION['dbconn'], $_SESSION['Username'], $_REQUEST['profile_Password'], $_REQUEST['profile_email'], $_REQUEST['profile_dob']))
 					{
-						setMsg("User Updated.");
+						setMsg("User Profile Updated.");
 						setPage("todo");
 						header("Location: ?page=todo");
 						exit;
