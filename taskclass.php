@@ -42,7 +42,8 @@
 		{
 			if(($dbconn)  != '')
 			{
-				$viewAlltodo_query="SELECT * FROM task WHERE username = $1;";
+				
+				$viewAlltodo_query="SELECT * FROM task WHERE username = $1 ORDER BY id desc;";
 				$result = pg_prepare($dbconn, "viewAll_query", $viewAlltodo_query);
 				$result = pg_execute($dbconn, "viewAll_query", array($argUsername));
 				if($result)
