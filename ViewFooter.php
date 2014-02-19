@@ -2,6 +2,6 @@
 
 <footer>
 	<p> 
-		&copy;2013 <a href="http://www.rahulrajeev.co">Rahul Rajeev</a> and <a href="http://www.linkedin.com/in/shambavi">Shambavi Krishnamurthi</a>
+		&copy;2013 <a href="http://www.cs.toronto.edu/~arnold/cp3101b/assignments/01/">CP3101</a>  PHP+HTML+CSS Assignment 1</a>
 	</p>
 </footer>

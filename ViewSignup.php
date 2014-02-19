@@ -10,11 +10,26 @@
 			<div class = "form">
 				<h1> User Sign-Up </h1>
 				<form method="post">
-					<input class="text-entry ninety-width"  placeholder="Enter User Name" name="UserName" type="text"/>
-					<input class="text-entry quarter-width left"  placeholder="Enter Password" name="Password" type="password"/>
-					<input class="text-entry quarter-width right"  placeholder="Re-enter Password" name="reEnterPassword" type="password"/><br/>
-					<input class="text-entry quarter-width left"  placeholder="Email ID" name="email" type="email"/>
-					<input class="text-entry quarter-width right date" value="yyyy-mm-dd" name="dob" type="date"/><br/>
+					<?php 
+						$repopulate = false;
+						if(isset($_REQUEST['submitsSignup']))
+						{
+							$repopulate = true;
+							$userName = $_REQUEST['UserName'];
+							$email = $_REQUEST['email'] ;
+							$dob = $_REQUEST['dob'];
+						}
+					?>
+					<input class="text-entry ninety-width"  placeholder="Enter User Name" 
+						name="UserName" type="text" <?php if($repopulate) echo("value = \"".$userName."\"");?>/>
+					<input class="text-entry quarter-width left"  placeholder="Enter Password" 
+						name="Password" type="password" />
+					<input class="text-entry quarter-width right"  placeholder="Re-enter Password" 
+						name="reEnterPassword" type="password"/><br/>
+					<input class="text-entry quarter-width left"  placeholder="Email ID" 
+						name="email" type="email" <?php if($repopulate) echo("value = \"".$email."\"");?>/>
+					<input class="text-entry quarter-width right date" value="yyyy-mm-dd" 
+						name="dob" type="date" <?php if($repopulate) echo("value = \"".$dob."\"");?>/><br/>
 					<input class = "btn half-width left" type="submit" name="submitsSignup" value="Signup"/>
 					<input class = "btn red-btn half-width right" type="submit" name="cancelSignup" value="Cancel"/>
 				</form>

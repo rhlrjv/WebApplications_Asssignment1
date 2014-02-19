@@ -37,11 +37,29 @@
 				{ ?>
 					<div class = "form">
 						<h1> Add a new To-Do </h1>	
-						<form method="post">	
-							<input class="text-entry ninety-width"  placeholder="Todo name" name="TodoName" type="text"/>
-							<input class="text-entry quarter-width left"  placeholder="Total number of hours " name="TodoHours" type="number"/><br/>
-							<input class="text-entry quarter-width right"  placeholder="Hours Completed " name="TodoHoursCompleted" type="number"/><br/>
-							<input class="chkbox"  name="TodoImportant" type="checkbox"/><label> Important</label><br/>
+						<form method="post">
+							<?php 
+								$repopulate = false;
+								if(isset($_REQUEST['AddTodo']))
+								{
+									$repopulate = true;
+									$r_Name = $_REQUEST['TodoName'];
+									$r_total = $_REQUEST['TodoHours'] ;
+									$r_completed = $_REQUEST['TodoHoursCompleted'];
+									if(isset($_REQUEST['TodoImportant']))
+										$r_imp = true;
+									else
+										$r_imp = false;
+								}
+							?>
+							<input class="text-entry ninety-width"  placeholder="Todo name*" 
+								name="TodoName" type="text" <?php if($repopulate) echo("value = \"".$r_Name."\"");?>/>
+							<input class="text-entry quarter-width left"  placeholder="Total number of hours*" 
+								name="TodoHours" type="number" <?php if($repopulate) echo("value = \"".$r_total."\"");?>/><br/>
+							<input class="text-entry quarter-width right"  placeholder="Hours Completed " 
+								name="TodoHoursCompleted" type="number" <?php if($repopulate) echo("value = \"".$r_completed."\"");?>/><br/>
+							<input class="chkbox"  name="TodoImportant" type="checkbox" <?php if($repopulate) if($r_imp) echo("checked");?>/>
+							<label> Important</label><br/>
 							<input class = "btn half-width left" type="submit" name="AddTodo" value="Add Todo"/>
 							<input class = "btn red-btn half-width right" type="submit" name="CancelAddTodo" value="Cancel"/>
 						</form>

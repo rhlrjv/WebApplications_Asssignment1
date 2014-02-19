@@ -152,13 +152,8 @@
 	
 	function setEditTodoID($id)
 	{
-		if (true) //TODO : id exists
-		{
-			$_SESSION['EditTodo'] = $id;
-			return true;
-		}
-		else
-			return false;
+		$_SESSION['EditTodo'] = $id;
+		return true;
 	}
 	
 	function clrEditTodoID()

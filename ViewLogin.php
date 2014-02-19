@@ -10,7 +10,16 @@
 			<div class = "form">
 				<h1> User Login </h1>
 				<form method="post">
-					<input class="text-entry ninety-width"  placeholder="User Name" name="UserName" type="text"/>
+					<?php 
+						$repopulate = false;
+						if(isset($_REQUEST['submitlogin']))
+						{
+							$repopulate = true;
+							$userName = $_REQUEST['UserName'];
+						}
+					?>
+					<input class="text-entry ninety-width"  placeholder="User Name" 
+						name="UserName" type="text" <?php if($repopulate) echo("value = \"".$userName."\"");?>/>
 					<input class="text-entry ninety-width"  placeholder="Password" name="Password" type="password"/><br/>
 					<input class = "btn half-width left" type="submit" name="submitlogin" value="Login"/>
 					<input class = "btn red-btn half-width right" type="submit" name="submitSignup" value="New User"/>

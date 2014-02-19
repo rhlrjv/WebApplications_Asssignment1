@@ -218,12 +218,14 @@
 					break;
 				case "addTodo":
 					$_SESSION['AddTodo'] = true;
+					clrEditTodoID();
 					setPage("todo");
 					header("Location: ?page=todo");
 					break;
 				case "editTodo":
 					if(!setEditTodoID($_REQUEST['editIndex']))
 						setErrorMsg("Unknown Task ID");
+					$_SESSION['AddTodo'] = false;
 					setPage("todo");
 					header("Location: ?page=todo");
 					break;
@@ -322,7 +324,7 @@
 			}
 			else
 			{
-				setErrorMsg("Error updating Todo Rate. Please Retry");
+				setErrorMsg("Error updating Todo Rate. Please make sure the rate is between 0-24 hours per day");
 			}
 		}
 	}
