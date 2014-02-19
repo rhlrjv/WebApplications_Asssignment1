@@ -232,18 +232,38 @@
 		if(isset($_REQUEST['AddTodo']))
 		{
 			//add a new todo
-			
-			//$argImp = isset($_REQUEST['TodoImportant']);
-			//$GLOBALS['taskobj']->addtodo($_SESSION['dbconn'], $_REQUEST['TodoName'], $_REQUEST['TodoHours'], $_REQUEST['TodoHoursCompleted'], $_REQUEST['TodoHours'], $argImp, $_SESSION['username']);
-			
-			if(true)//things work out
-			{
-				setMsg("New Todo added.");
-				$_SESSION['AddTodo'] = false;
-			}
+			if(isset($_REQUEST['TodoImportant']))
+				$argImp = 1;
 			else
+				$argImp = 0;
+				
+			if($_REQUEST['TodoName'] == "")
 			{
-				setErrorMsg("Error Adding Todo. Please Retry");
+				setErrorMsg("Please enter a task name.");
+			}
+			else if($_REQUEST['TodoHours'] < $_REQUEST['TodoHoursCompleted'])
+			{
+				setErrorMsg("Total Hours greater than Completed Hours. Please re-enter data.");
+			}
+			else if($_REQUEST['TodoHours'] == "")
+			{
+				setErrorMsg("Please enter Total Hours.");
+			}
+			else 
+			{
+				if($_REQUEST['TodoHoursCompleted'] == "")
+					$argHrsCompleted = 0;
+				else
+					$argHrsCompleted = $_REQUEST['TodoHoursCompleted'];
+				if($GLOBALS['taskobj']->addtodo($_SESSION['dbconn'], $_REQUEST['TodoName'], $_REQUEST['TodoHours'], $argHrsCompleted, $argImp, $_SESSION['Username']))//things work out
+				{
+					setMsg("New task added.");
+					$_SESSION['AddTodo'] = false;
+				}
+				else
+				{
+					setErrorMsg("Error adding task. Please retry.");
+				}
 			}
 		}
 		else if (isset($_REQUEST['CancelAddTodo']))
@@ -254,7 +274,7 @@
 		
 		else if(isset($_REQUEST['UpdateTodo']))
 		{
-			//add a new todo
+			//update a new todo
 			//get the ID of the current todo by using : $_REQUEST['TodoID'];
 			
 			if(true)//things work out
@@ -273,14 +293,20 @@
 			//delete Todo
 			//get the ID of the current todo by using : $_REQUEST['TodoID'];
 			
-			if(true)//things work out
+			if($GLOBALS['taskobj']->checkIdExists ($_SESSION['dbconn'], $_REQUEST['TodoID'], $_SESSION['Username']))
 			{
-				setMsg("Todo Deleted");
-				clrEditTodoID();
+				if($GLOBALS['taskobj']->deletetodo ($_SESSION['dbconn'], $_REQUEST['TodoID']))
+				{
+					setMsg("Task deleted");
+					clrEditTodoID();
+				}
+				else
+					setErrorMsg("Error deleting task. Please retry");
+				
 			}
 			else
 			{
-				setErrorMsg("Error Deleting Todo. Please Retry");
+				setErrorMsg("Task Id has been changed maliciously. Please refresh page and retry");
 				clrEditTodoID();
 			}
 		}

@@ -64,6 +64,7 @@
 				return true;
 				break;
 			case "logged_out":
+				clearSession();
 				$_SESSION['AppState'] = "l_out";
 				$_SESSION['Page'] = "home";
 				header("Location: ");			//reload to new page
