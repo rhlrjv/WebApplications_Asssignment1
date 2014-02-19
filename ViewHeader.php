@@ -10,7 +10,7 @@
 			
 			<?php if (isLoggedIn()) {?>
 				<a <?php if($view == "viewTodo.php") echo("class = \"selected\""); ?> href = "?page=todo">Todo</a>
-				<a <?php if($view == "viewProfile.php") echo("class = \"selected\""); ?> href = "?page=profile">Profile</a>
+				<a <?php if($view == "viewProfile.php") echo("class = \"selected\""); ?> href = "?page=profile"><?php echo($_SESSION['Username']."'s profile");?></a>
 			<?php } ?>
 			
 			

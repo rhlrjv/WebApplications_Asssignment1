@@ -37,6 +37,15 @@
 	
 	if(!isset($_SESSION['Username']))
 		$_SESSION['Username'] = "";
+		
+	if(!isset($_SESSION['AddTodo']))
+		$_SESSION['AddTodo'] = false;
+		
+	if(!isset($_SESSION['EditTodo']))
+		$_SESSION['EditTodo'] = 0;
+		
+	if(!isset($_SESSION['TodoRate']))
+		$_SESSION['TodoRate'] = 6;
 
 			
 	function clearSession()
@@ -126,5 +135,40 @@
 	function getSessionUsername()
 	{
 		return $_SESSION['Username'];
+	}
+	
+	function getRandomNumer()
+	{
+		$_SESSION['rand'] = rand(100,999);
+		return $_SESSION['rand'];
+	}
+	
+	function isCorrectRandomNumer($rNo){
+		if($_SESSION['rand'] == $rNo)
+			return true;
+		else
+			return false;
+	}
+	
+	function setEditTodoID($id)
+	{
+		if (true) //TODO : id exists
+		{
+			$_SESSION['EditTodo'] = $id;
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	function clrEditTodoID()
+	{
+		$_SESSION['EditTodo'] = 0;
+	}
+	
+	//returns Username
+	function getEditTodoID()
+	{
+		return $_SESSION['EditTodo'];
 	}
 ?>
